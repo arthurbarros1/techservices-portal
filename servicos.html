@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Solicitação de serviços de TI — área do cliente TechServices.">
+  <title>Solicitação de serviços — TechServices</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/services.css">
+</head>
+
+<body>
+
+  <!-- Header simples reaproveitando o padrão institucional -->
+  <header class="cabecalho-topo" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.5rem; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+    <span class="badge-logo" style="display:inline-block; padding:0.4rem 0.9rem; font-weight:700; color:#fff; background:var(--cor-primaria, #0d47a1); border-radius:8px;">TechServices</span>
+    <nav aria-label="Navegação">
+      <a href="index.html" style="text-decoration:none; font-weight:600; color:var(--cor-primaria, #0d47a1);">Voltar ao início</a>
+    </nav>
+  </header>
+
+  <div class="servicos-wrapper">
+
+    <!-- SEÇÃO 1 — Usuário logado -->
+    <section class="painel-secao" aria-label="Dados do usuário">
+      <h2>Área do cliente</h2>
+      <div class="dados-usuario">
+        <div class="dado-item">
+          <span class="rotulo">Nome</span>
+          <span class="valor" id="usuario-nome">Maria da Silva</span>
+        </div>
+        <div class="dado-item">
+          <span class="rotulo">E-mail</span>
+          <span class="valor" id="usuario-email">maria.silva@exemplo.com.br</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2 — Tabela de pedidos -->
+    <section class="painel-secao" aria-label="Minhas solicitações">
+      <h2>Minhas solicitações</h2>
+      <div class="tabela-rolagem">
+        <table class="tabela-pedidos">
+          <caption>Solicitações de serviços registradas na sua conta.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Data do pedido</th>
+              <th scope="col">Nº da solicitação</th>
+              <th scope="col">Serviço</th>
+              <th scope="col">Status</th>
+              <th scope="col">Preço cobrado</th>
+              <th scope="col">Data prevista</th>
+              <th scope="col">Ação</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela">
+            <!-- Linhas inseridas dinamicamente via services.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3 — Nova solicitação -->
+    <section class="painel-secao" aria-label="Nova solicitação">
+      <h2>Nova solicitação de serviço</h2>
+
+      <div class="form-solicitacao">
+
+        <div class="campo">
+          <label for="servico">Serviço desejado</label>
+          <select id="servico" name="servico">
+            <!-- Opções inseridas via services.js -->
+          </select>
+        </div>
+
+        <!-- Painel de labels reativos -->
+        <div class="resumo-solicitacao">
+          <div class="resumo-item">
+            <span class="rotulo">Preço</span>
+            <span class="valor" id="resumo-preco">—</span>
+          </div>
+          <div class="resumo-item">
+            <span class="rotulo">Prazo de atendimento</span>
+            <span class="valor" id="resumo-prazo">—</span>
+          </div>
+          <div class="resumo-item">
+            <span class="rotulo">Data prevista</span>
+            <span class="valor" id="resumo-data">—</span>
+          </div>
+          <div class="resumo-item">
+            <span class="rotulo">Status</span>
+            <span class="valor" id="resumo-status">EM ELABORAÇÃO</span>
+          </div>
+        </div>
+
+        <p class="mensagem-form" id="mensagem-form" role="status"></p>
+
+        <div class="form-acoes">
+          <button type="button" id="btn-incluir" class="btn btn--primario">Incluir solicitação</button>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script src="assets/js/services.js"></script>
+
+</body>
+</html>

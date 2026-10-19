@@ -1,0 +1,37 @@
+# ==========================================================================
+# .gitignore — techservices-portal
+# ==========================================================================
+
+# --- Sistema operacional ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# --- Editores / IDEs ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# --- Dependências (caso venha a usar ferramentas de build no futuro) ---
+node_modules/
+package-lock.json
+yarn.lock
+
+# --- Logs e arquivos temporários ---
+*.log
+npm-debug.log*
+*.tmp
+*.temp
+
+# --- Variáveis de ambiente ---
+.env
+.env.local

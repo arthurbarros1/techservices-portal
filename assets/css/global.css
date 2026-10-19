@@ -1,0 +1,380 @@
+/* ==========================================================================
+   global.css — Design system e estilos base
+   Projeto: techservices-portal
+   Carregado por TODAS as páginas antes das folhas específicas.
+   Fundação: tokens de cor, tipografia em escala, espaçamento modular,
+   raios, sombras e componentes compartilhados (header, badge, rodapé).
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   1. Design tokens
+   ------------------------------------------------------------------------- */
+:root {
+  /* --- Paleta: azul-marinho corporativo + aço + âmbar discreto --- */
+  --marinho-900: #0b2239;
+  --marinho-800: #103052;
+  --marinho-700: #16406c;
+  --marinho-600: #1d5086;
+  --azure-600:   #2563eb;
+  --azure-700:   #1d4ed8;
+  --ambar-500:   #d4a017;   /* detalhe sóbrio, sem brilho exagerado */
+
+  /* Semânticos de marca */
+  --cor-primaria:       var(--marinho-800);
+  --cor-primaria-clara: var(--marinho-600);
+  --cor-secundaria:     var(--azure-600);
+  --cor-secundaria-esc: var(--azure-700);
+  --cor-acento:         var(--ambar-500);
+
+  /* --- Neutros (slate) --- */
+  --slate-50:  #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  --cor-fundo:       var(--slate-100);
+  --cor-superficie:  #ffffff;
+  --cor-texto:       var(--slate-800);
+  --cor-texto-suave: var(--slate-500);
+  --borda:           var(--slate-200);
+  --borda-forte:     var(--slate-300);
+
+  /* --- Semânticos de estado --- */
+  --cor-sucesso:    #15803d;
+  --cor-sucesso-bg: #f0fdf4;
+  --cor-sucesso-bd: #bbf7d0;
+  --cor-erro:       #b91c1c;
+  --cor-erro-bg:    #fef2f2;
+  --cor-erro-bd:    #fecaca;
+  --cor-aviso:      #b45309;
+  --cor-aviso-bg:   #fffbeb;
+  --cor-aviso-bd:   #fde68a;
+
+  /* --- Tipografia --- */
+  --fonte-base: system-ui, -apple-system, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
+
+  /* Escala modular (base 1rem, razão ~1.2) */
+  --txt-xs:   0.75rem;
+  --txt-sm:   0.875rem;
+  --txt-base: 1rem;
+  --txt-md:   1.125rem;
+  --txt-lg:   1.35rem;
+  --txt-xl:   1.65rem;
+  --txt-2xl:  2rem;
+  --txt-3xl:  2.5rem;
+
+  /* --- Espaçamento modular --- */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 0.75rem;
+  --esp-4: 1rem;
+  --esp-5: 1.5rem;
+  --esp-6: 2rem;
+  --esp-7: 3rem;
+  --esp-8: 4rem;
+
+  /* --- Raios --- */
+  --raio-sm:   6px;
+  --raio:      10px;
+  --raio-lg:   16px;
+  --raio-full: 999px;
+
+  /* --- Sombras sóbrias em camadas --- */
+  --sombra-sm: 0 1px 2px rgba(11, 34, 57, 0.06),
+               0 1px 3px rgba(11, 34, 57, 0.10);
+  --sombra:    0 4px 6px rgba(11, 34, 57, 0.05),
+               0 10px 15px rgba(11, 34, 57, 0.08);
+  --sombra-md: 0 10px 20px rgba(11, 34, 57, 0.10),
+               0 6px 8px rgba(11, 34, 57, 0.06);
+  --sombra-lg: 0 20px 40px rgba(11, 34, 57, 0.14),
+               0 8px 16px rgba(11, 34, 57, 0.08);
+
+  --transicao: 0.18s ease;
+  --largura-conteudo: 1140px;
+}
+
+/* -------------------------------------------------------------------------
+   2. Reset
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--fonte-base);
+  font-size: var(--txt-base);
+  line-height: 1.65;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img { height: auto; }
+
+ul, ol { list-style: none; padding: 0; }
+
+/* -------------------------------------------------------------------------
+   3. Tipografia
+   ------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  letter-spacing: -0.015em;
+}
+
+h1 { font-size: var(--txt-3xl); font-weight: 800; }
+h2 { font-size: var(--txt-xl); }
+h3 { font-size: var(--txt-md); }
+
+a {
+  color: var(--cor-secundaria);
+  text-decoration: none;
+  transition: color var(--transicao);
+}
+
+a:hover { color: var(--cor-secundaria-esc); }
+
+strong { font-weight: 700; }
+
+:focus-visible {
+  outline: 3px solid var(--cor-acento);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Título de seção reutilizável (barra de acento à esquerda) */
+.titulo-secao {
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--esp-5);
+  padding-left: var(--esp-4);
+  font-size: var(--txt-xl);
+  color: var(--cor-primaria);
+}
+
+.titulo-secao::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 4px;
+  background: linear-gradient(180deg,
+    var(--cor-secundaria), var(--cor-acento));
+  border-radius: var(--raio-full);
+}
+
+/* -------------------------------------------------------------------------
+   4. Header institucional
+   ------------------------------------------------------------------------- */
+.cabecalho-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-4) var(--esp-5);
+  padding: var(--esp-4) clamp(var(--esp-4), 5vw, var(--esp-6));
+  background: var(--cor-superficie);
+  border-bottom: 1px solid var(--borda);
+  box-shadow: var(--sombra-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* -------------------------------------------------------------------------
+   5. Badge / logotipo em texto
+   ------------------------------------------------------------------------- */
+.badge-logo {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--esp-2) var(--esp-4);
+  font-weight: 800;
+  font-size: var(--txt-md);
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  background: linear-gradient(135deg,
+    var(--marinho-800) 0%, var(--marinho-600) 100%);
+  border-radius: var(--raio-sm);
+  box-shadow: var(--sombra-sm);
+}
+
+.badge-logo::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-right: var(--esp-2);
+  background: var(--cor-acento);
+  border-radius: 50%;
+}
+
+/* -------------------------------------------------------------------------
+   6. Menu de navegação (header institucional)
+   ------------------------------------------------------------------------- */
+.menu-principal ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+  align-items: center;
+}
+
+.menu-principal a {
+  display: inline-block;
+  padding: var(--esp-2) var(--esp-3);
+  font-weight: 600;
+  font-size: var(--txt-sm);
+  color: var(--cor-primaria);
+  border-radius: var(--raio-sm);
+  transition: background var(--transicao), color var(--transicao);
+}
+
+.menu-principal a:hover {
+  background: var(--slate-100);
+  color: var(--cor-secundaria);
+}
+
+/* Link de destaque (CTA) no menu */
+.menu-principal a.destaque {
+  color: #ffffff;
+  background: var(--cor-secundaria);
+}
+
+.menu-principal a.destaque:hover {
+  background: var(--cor-secundaria-esc);
+  color: #ffffff;
+}
+
+/* -------------------------------------------------------------------------
+   7. Botão base (compartilhado por todas as telas)
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  padding: var(--esp-3) var(--esp-5);
+  font-size: var(--txt-base);
+  font-weight: 600;
+  font-family: inherit;
+  line-height: 1.2;
+  text-align: center;
+  border: 1.5px solid transparent;
+  border-radius: var(--raio-sm);
+  cursor: pointer;
+  transition: background var(--transicao),
+              border-color var(--transicao),
+              box-shadow var(--transicao),
+              transform 0.08s ease;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn--primario {
+  color: #ffffff;
+  background: linear-gradient(135deg,
+    var(--marinho-800) 0%, var(--azure-600) 120%);
+  box-shadow: var(--sombra);
+}
+
+.btn--primario:hover {
+  box-shadow: var(--sombra-md);
+  filter: brightness(1.07);
+}
+
+.btn--secundario {
+  color: var(--cor-primaria);
+  background: var(--cor-superficie);
+  border-color: var(--borda-forte);
+}
+
+.btn--secundario:hover {
+  border-color: var(--cor-secundaria);
+  background: var(--slate-50);
+  color: var(--cor-secundaria);
+}
+
+/* -------------------------------------------------------------------------
+   8. Rodapé institucional (compartilhado)
+   ------------------------------------------------------------------------- */
+.rodape-institucional {
+  background: linear-gradient(180deg,
+    var(--marinho-800) 0%, var(--marinho-900) 100%);
+  color: var(--slate-200);
+  margin-top: var(--esp-8);
+  padding: var(--esp-7) clamp(var(--esp-4), 5vw, var(--esp-6)) var(--esp-5);
+}
+
+.rodape-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--esp-6);
+  max-width: var(--largura-conteudo);
+  margin: 0 auto;
+}
+
+.rodape-institucional h3 {
+  margin-bottom: var(--esp-4);
+  font-size: var(--txt-base);
+  color: #ffffff;
+  padding-bottom: var(--esp-2);
+  border-bottom: 2px solid rgba(212, 160, 23, 0.6);
+}
+
+.rodape-institucional a { color: var(--slate-300); }
+.rodape-institucional a:hover { color: #ffffff; }
+
+.rodape-institucional address { font-style: normal; line-height: 1.8; }
+
+.rodape-base {
+  max-width: var(--largura-conteudo);
+  margin: var(--esp-6) auto 0;
+  padding-top: var(--esp-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  font-size: var(--txt-sm);
+  color: var(--slate-400);
+}
+
+/* -------------------------------------------------------------------------
+   9. Utilitários
+   ------------------------------------------------------------------------- */
+.container {
+  max-width: var(--largura-conteudo);
+  margin: 0 auto;
+  padding: 0 clamp(var(--esp-4), 5vw, var(--esp-6));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

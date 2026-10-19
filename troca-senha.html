@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Troca de senha de clientes TechServices — área restrita.">
+  <title>Troca de senha de clientes — TechServices</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+
+<body class="auth-area">
+
+  <main class="auth-card">
+
+    <header class="auth-cabecalho">
+      <span class="badge-logo">TechServices</span>
+      <h1>Troca de senha de clientes</h1>
+      <p>Defina uma nova senha seguindo as regras de composição abaixo.</p>
+    </header>
+
+    <!-- Alertas no nível do formulário (exibidos via JS) -->
+    <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
+      Validação realizada com sucesso. Retornando ao login…
+    </div>
+    <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
+      <span id="texto-alerta-erro">Verifique os dados informados.</span>
+    </div>
+
+    <form id="form-troca" class="auth-form" novalidate>
+
+      <div class="campo" id="campo-email">
+        <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" autocomplete="email"
+               placeholder="voce@exemplo.com.br" required>
+        <span class="mensagem-campo" id="msg-email"></span>
+      </div>
+
+      <div class="campo" id="campo-senha">
+        <label for="senha">Nova senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="password" id="senha" name="senha" autocomplete="new-password"
+               placeholder="Crie uma nova senha" required>
+        <span class="mensagem-campo" id="msg-senha"></span>
+      </div>
+
+      <div class="campo" id="campo-confirma">
+        <label for="confirma">Confirmar nova senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="password" id="confirma" name="confirma" autocomplete="new-password"
+               placeholder="Repita a nova senha" required>
+        <span class="mensagem-campo" id="msg-confirma"></span>
+      </div>
+
+      <!-- Bloco instrutivo das regras de composição de senha -->
+      <section class="regras-senha" aria-label="Regras de composição de senha">
+        <h2>Regras da nova senha</h2>
+
+        <ul class="lista-regras" id="lista-regras">
+          <li data-criterio="tamanho">Mínimo de 6 caracteres</li>
+          <li data-criterio="numero">Pelo menos um número (0–9)</li>
+          <li data-criterio="maiuscula">Pelo menos uma letra maiúscula (A–Z)</li>
+          <li data-criterio="permitido">Pelo menos um caractere especial permitido</li>
+          <li data-criterio="semProibido">Sem caracteres proibidos</li>
+        </ul>
+
+        <div class="caracteres-senha">
+          <div class="bloco-caracteres bloco-permitidos">
+            <h3>Permitidos</h3>
+            <div class="chips-caracteres" id="chips-permitidos"><!-- preenchido via JS --></div>
+          </div>
+          <div class="bloco-caracteres bloco-proibidos">
+            <h3>Proibidos</h3>
+            <div class="chips-caracteres" id="chips-proibidos"><!-- preenchido via JS --></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="auth-acoes">
+        <button type="submit" class="btn btn--primario">Troca Senha</button>
+        <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
+      </div>
+
+    </form>
+
+    <nav class="auth-rodape">
+      <p>Lembrou a senha? <a href="login.html">Voltar ao login</a></p>
+    </nav>
+
+  </main>
+
+  <!-- Lógica reaproveitável de validação -->
+  <script src="assets/js/auth-validators.js"></script>
+
+  <!-- Orquestração específica da tela de troca de senha -->
+  <script>
+    (function () {
+      "use strict";
+
+      var form          = document.getElementById("form-troca");
+      var inputEmail    = document.getElementById("email");
+      var inputSenha    = document.getElementById("senha");
+      var inputConfirma = document.getElementById("confirma");
+      var campoEmail    = document.getElementById("campo-email");
+      var campoSenha    = document.getElementById("campo-senha");
+      var campoConfirma = document.getElementById("campo-confirma");
+      var msgEmail      = document.getElementById("msg-email");
+      var msgSenha      = document.getElementById("msg-senha");
+      var msgConfirma   = document.getElementById("msg-confirma");
+      var alertaOk      = document.getElementById("alerta-sucesso");
+      var alertaErro    = document.getElementById("alerta-erro");
+      var textoErro     = document.getElementById("texto-alerta-erro");
+      var btnLimpar     = document.getElementById("btn-limpar");
+      var listaRegras   = document.getElementById("lista-regras");
+
+      // --- Sincroniza os chips de caracteres com as listas do validador ---
+      function renderizarChips() {
+        var permitidos = document.getElementById("chips-permitidos");
+        var proibidos  = document.getElementById("chips-proibidos");
+
+        AuthValidators.CARACTERES_PERMITIDOS.forEach(function (c) {
+          var chip = document.createElement("span");
+          chip.className = "chip chip--ok";
+          chip.textContent = c;
+          permitidos.appendChild(chip);
+        });
+
+        AuthValidators.CARACTERES_PROIBIDOS.forEach(function (c) {
+          var chip = document.createElement("span");
+          chip.className = "chip chip--proibido";
+          chip.textContent = c;
+          proibidos.appendChild(chip);
+        });
+      }
+
+      // Atualiza as bolinhas da lista de critérios em tempo real
+      function atualizarCriterios(criterios) {
+        var itens = listaRegras.querySelectorAll("li");
+        itens.forEach(function (li) {
+          var chave = li.getAttribute("data-criterio");
+          if (criterios && criterios[chave]) {
+            li.classList.add("atendido");
+          } else {
+            li.classList.remove("atendido");
+          }
+        });
+      }
+
+      function limparEstados() {
+        [campoEmail, campoSenha, campoConfirma].forEach(function (c) {
+          c.classList.remove("campo--erro", "campo--ok");
+        });
+        msgEmail.textContent = "";
+        msgSenha.textContent = "";
+        msgConfirma.textContent = "";
+        alertaOk.hidden = true;
+        alertaErro.hidden = true;
+      }
+
+      function marcarErro(campo, elementoMsg, texto) {
+        campo.classList.add("campo--erro");
+        campo.classList.remove("campo--ok");
+        elementoMsg.textContent = texto;
+      }
+
+      function marcarOk(campo) {
+        campo.classList.add("campo--ok");
+        campo.classList.remove("campo--erro");
+      }
+
+      // Feedback em tempo real dos critérios enquanto digita a nova senha
+      inputSenha.addEventListener("input", function () {
+        var resultado = AuthValidators.validarSenhaForte(inputSenha.value);
+        atualizarCriterios(resultado.criterios);
+      });
+
+      form.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        limparEstados();
+
+        var email    = inputEmail.value.trim();
+        var senha    = inputSenha.value;
+        var confirma = inputConfirma.value;
+        var valido   = true;
+
+        // 1) E-mail
+        if (email === "") {
+          marcarErro(campoEmail, msgEmail, "Informe o e-mail.");
+          valido = false;
+        } else if (!AuthValidators.validarEmail(email)) {
+          marcarErro(campoEmail, msgEmail, "E-mail em formato inválido.");
+          valido = false;
+        } else {
+          marcarOk(campoEmail);
+        }
+
+        // 2) Nova senha atende às regras?
+        var resultadoSenha = AuthValidators.validarSenhaForte(senha);
+        atualizarCriterios(resultadoSenha.criterios);
+
+        if (senha === "") {
+          marcarErro(campoSenha, msgSenha, "Informe a nova senha.");
+          valido = false;
+        } else if (!resultadoSenha.valido) {
+          marcarErro(campoSenha, msgSenha, "A senha não atende a todas as regras.");
+          valido = false;
+        } else {
+          marcarOk(campoSenha);
+        }
+
+        // 3) Confirmação confere?
+        if (confirma === "") {
+          marcarErro(campoConfirma, msgConfirma, "Confirme a nova senha.");
+          valido = false;
+        } else if (!AuthValidators.senhasConferem(senha, confirma)) {
+          marcarErro(campoConfirma, msgConfirma, "As senhas não conferem.");
+          valido = false;
+        } else if (resultadoSenha.valido) {
+          marcarOk(campoConfirma);
+        }
+
+        if (!valido) {
+          textoErro.textContent = "Não foi possível trocar a senha. Corrija os campos destacados.";
+          alertaErro.hidden = false;
+          return;
+        }
+
+        // Sucesso: mensagem e retorno ao login
+        alertaOk.hidden = false;
+        window.setTimeout(function () {
+          window.location.href = "login.html";
+        }, 1200);
+      });
+
+      // Botão Limpar: zera inputs, estados, critérios e foca o login
+      btnLimpar.addEventListener("click", function () {
+        form.reset();
+        limparEstados();
+        atualizarCriterios(null);
+        inputEmail.focus();
+      });
+
+      // Inicialização
+      renderizarChips();
+    })();
+  </script>
+
+</body>
+</html>

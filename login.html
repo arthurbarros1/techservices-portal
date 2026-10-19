@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Acesso de clientes TechServices — área restrita.">
+  <title>Login de clientes — TechServices</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+
+<body class="auth-area">
+
+  <main class="auth-card">
+
+    <header class="auth-cabecalho">
+      <span class="badge-logo">TechServices</span>
+      <h1>Login de clientes</h1>
+      <p>Acesse a área restrita com seu e-mail e senha cadastrados.</p>
+    </header>
+
+    <!-- Alertas no nível do formulário (exibidos via JS) -->
+    <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
+      Validação realizada com sucesso. Redirecionando…
+    </div>
+    <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
+      <span id="texto-alerta-erro">Verifique os dados informados.</span>
+    </div>
+
+    <form id="form-login" class="auth-form" novalidate>
+
+      <div class="campo" id="campo-email">
+        <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" autocomplete="email"
+               placeholder="voce@exemplo.com.br" required>
+        <span class="mensagem-campo" id="msg-email"></span>
+      </div>
+
+      <div class="campo" id="campo-senha">
+        <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="password" id="senha" name="senha" autocomplete="current-password"
+               placeholder="Digite sua senha" required>
+        <span class="mensagem-campo" id="msg-senha"></span>
+      </div>
+
+      <div class="auth-acoes">
+        <button type="submit" class="btn btn--primario">Realizar Login</button>
+        <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
+      </div>
+
+    </form>
+
+    <nav class="auth-rodape">
+      <p><a href="troca-senha.html">Esqueci / trocar minha senha</a></p>
+      <p>Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </nav>
+
+  </main>
+
+  <!-- Lógica reaproveitável de validação -->
+  <script src="assets/js/auth-validators.js"></script>
+
+  <!-- Orquestração específica da tela de login -->
+  <script>
+    (function () {
+      "use strict";
+
+      var form         = document.getElementById("form-login");
+      var inputEmail   = document.getElementById("email");
+      var inputSenha   = document.getElementById("senha");
+      var campoEmail   = document.getElementById("campo-email");
+      var campoSenha   = document.getElementById("campo-senha");
+      var msgEmail     = document.getElementById("msg-email");
+      var msgSenha     = document.getElementById("msg-senha");
+      var alertaOk     = document.getElementById("alerta-sucesso");
+      var alertaErro   = document.getElementById("alerta-erro");
+      var textoErro    = document.getElementById("texto-alerta-erro");
+      var btnLimpar    = document.getElementById("btn-limpar");
+
+      // Zera estados visuais e mensagens antes de cada validação
+      function limparEstados() {
+        campoEmail.classList.remove("campo--erro", "campo--ok");
+        campoSenha.classList.remove("campo--erro", "campo--ok");
+        msgEmail.textContent = "";
+        msgSenha.textContent = "";
+        alertaOk.hidden = true;
+        alertaErro.hidden = true;
+      }
+
+      function marcarErro(campo, elementoMsg, texto) {
+        campo.classList.add("campo--erro");
+        campo.classList.remove("campo--ok");
+        elementoMsg.textContent = texto;
+      }
+
+      function marcarOk(campo) {
+        campo.classList.add("campo--ok");
+        campo.classList.remove("campo--erro");
+      }
+
+      form.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        limparEstados();
+
+        var email = inputEmail.value.trim();
+        var senha = inputSenha.value;
+        var valido = true;
+
+        // Validação do e-mail (delegada ao auth-validators.js)
+        if (email === "") {
+          marcarErro(campoEmail, msgEmail, "Informe o e-mail.");
+          valido = false;
+        } else if (!AuthValidators.validarEmail(email)) {
+          marcarErro(campoEmail, msgEmail, "E-mail em formato inválido.");
+          valido = false;
+        } else {
+          marcarOk(campoEmail);
+        }
+
+        // Validação da senha (apenas preenchimento, conforme especificado)
+        if (senha === "") {
+          marcarErro(campoSenha, msgSenha, "Informe a senha.");
+          valido = false;
+        } else {
+          marcarOk(campoSenha);
+        }
+
+        if (!valido) {
+          textoErro.textContent = "Não foi possível entrar. Corrija os campos destacados.";
+          alertaErro.hidden = false;
+          return;
+        }
+
+        // Sucesso: mensagem e redirecionamento
+        alertaOk.hidden = false;
+        window.setTimeout(function () {
+          window.location.href = "index.html";
+        }, 1200);
+      });
+
+      // Botão Limpar: zera inputs, estados e devolve o foco ao login
+      btnLimpar.addEventListener("click", function () {
+        form.reset();
+        limparEstados();
+        inputEmail.focus();
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

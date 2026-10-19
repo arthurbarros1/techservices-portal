@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cadastro de novos clientes TechServices.">
+  <title>Cadastro de clientes — TechServices</title>
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+
+<body class="auth-area">
+
+  <main class="auth-card auth-card--amplo">
+
+    <header class="auth-cabecalho">
+      <span class="badge-logo">TechServices</span>
+      <h1>Cadastro de clientes</h1>
+      <p>Preencha seus dados para criar uma conta.</p>
+    </header>
+
+    <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
+      Validação realizada com sucesso.
+    </div>
+    <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
+      <span id="texto-alerta-erro">Verifique os dados informados.</span>
+    </div>
+
+    <form id="form-cadastro" class="auth-form" novalidate>
+
+      <!-- E-mail -->
+      <div class="campo" id="campo-email">
+        <label for="email">E-mail (login) <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" autocomplete="email"
+               placeholder="voce@exemplo.com.br" required>
+        <span class="mensagem-campo" id="msg-email"></span>
+      </div>
+
+      <!-- Nome completo -->
+      <div class="campo" id="campo-nome">
+        <label for="nome">Nome completo <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="text" id="nome" name="nome" autocomplete="name"
+               placeholder="Ex.: Maria da Silva" required>
+        <span class="ajuda">Ao menos duas palavras; a primeira com 2+ letras; sem caracteres especiais.</span>
+        <span class="mensagem-campo" id="msg-nome"></span>
+      </div>
+
+      <!-- CPF e Data de nascimento (lado a lado) -->
+      <div class="campo-linha">
+        <div class="campo" id="campo-cpf">
+          <label for="cpf">CPF <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="text" id="cpf" name="cpf" inputmode="numeric"
+                 placeholder="000.000.000-00" maxlength="14" required>
+          <span class="mensagem-campo" id="msg-cpf"></span>
+        </div>
+
+        <div class="campo" id="campo-nascimento">
+          <label for="nascimento">Data de nascimento <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="date" id="nascimento" name="nascimento" required>
+          <span class="mensagem-campo" id="msg-nascimento"></span>
+        </div>
+      </div>
+
+      <!-- Telefone (opcional) -->
+      <div class="campo" id="campo-telefone">
+        <label for="telefone">Celular / WhatsApp <span class="ajuda">(opcional)</span></label>
+        <input type="tel" id="telefone" name="telefone" inputmode="numeric"
+               placeholder="(00) 00000-0000" maxlength="15">
+        <span class="mensagem-campo" id="msg-telefone"></span>
+      </div>
+
+      <!-- Senha e confirmação -->
+      <div class="campo" id="campo-senha">
+        <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="password" id="senha" name="senha" autocomplete="new-password"
+               placeholder="Crie uma senha" required>
+        <span class="mensagem-campo" id="msg-senha"></span>
+      </div>
+
+      <div class="campo" id="campo-confirma">
+        <label for="confirma">Confirmar senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+        <input type="password" id="confirma" name="confirma" autocomplete="new-password"
+               placeholder="Repita a senha" required>
+        <span class="mensagem-campo" id="msg-confirma"></span>
+      </div>
+
+      <!-- Bloco instrutivo das regras de senha -->
+      <section class="regras-senha" aria-label="Regras de composição de senha">
+        <h2>Regras da senha</h2>
+        <ul class="lista-regras" id="lista-regras">
+          <li data-criterio="tamanho">Mínimo de 6 caracteres</li>
+          <li data-criterio="numero">Pelo menos um número (0–9)</li>
+          <li data-criterio="maiuscula">Pelo menos uma letra maiúscula (A–Z)</li>
+          <li data-criterio="permitido">Pelo menos um caractere especial permitido</li>
+          <li data-criterio="semProibido">Sem caracteres proibidos</li>
+        </ul>
+        <div class="caracteres-senha">
+          <div class="bloco-caracteres bloco-permitidos">
+            <h3>Permitidos</h3>
+            <div class="chips-caracteres" id="chips-permitidos"></div>
+          </div>
+          <div class="bloco-caracteres bloco-proibidos">
+            <h3>Proibidos</h3>
+            <div class="chips-caracteres" id="chips-proibidos"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Estado civil -->
+      <fieldset class="grupo-radio" id="campo-estadocivil">
+        <legend>Estado civil</legend>
+        <div class="opcoes-radio">
+          <label class="opcao-radio">
+            <input type="radio" name="estadocivil" value="solteiro" checked> Solteiro(a)
+          </label>
+          <label class="opcao-radio">
+            <input type="radio" name="estadocivil" value="casado"> Casado(a)
+          </label>
+          <label class="opcao-radio">
+            <input type="radio" name="estadocivil" value="divorciado"> Divorciado(a)
+          </label>
+          <label class="opcao-radio">
+            <input type="radio" name="estadocivil" value="viuvo"> Viúvo(a)
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Escolaridade -->
+      <div class="campo" id="campo-escolaridade">
+        <label for="escolaridade">Escolaridade</label>
+        <select id="escolaridade" name="escolaridade">
+          <option value="1g-incompleto">1º grau incompleto</option>
+          <option value="1g-completo">1º grau completo</option>
+          <option value="2g-completo" selected>2º grau completo</option>
+          <option value="superior">Nível superior</option>
+          <option value="pos">Pós-graduado</option>
+        </select>
+      </div>
+
+      <div class="auth-acoes">
+        <button type="submit" class="btn btn--primario">Incluir</button>
+        <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
+        <button type="button" id="btn-voltar" class="btn btn--secundario">Voltar</button>
+      </div>
+
+    </form>
+
+    <nav class="auth-rodape">
+      <p>Já tem conta? <a href="login.html">Faça login</a></p>
+    </nav>
+
+  </main>
+
+  <script src="assets/js/auth-validators.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form        = document.getElementById("form-cadastro");
+      var alertaOk    = document.getElementById("alerta-sucesso");
+      var alertaErro  = document.getElementById("alerta-erro");
+      var textoErro   = document.getElementById("texto-alerta-erro");
+      var btnLimpar   = document.getElementById("btn-limpar");
+      var btnVoltar   = document.getElementById("btn-voltar");
+      var listaRegras = document.getElementById("lista-regras");
+
+      // Referências de campo { input, campo, msg }
+      function ref(id) {
+        return {
+          input: document.getElementById(id),
+          campo: document.getElementById("campo-" + id),
+          msg:   document.getElementById("msg-" + id)
+        };
+      }
+
+      var email      = ref("email");
+      var nome       = ref("nome");
+      var cpf        = ref("cpf");
+      var nascimento = ref("nascimento");
+      var telefone   = ref("telefone");
+      var senha      = ref("senha");
+      var confirma   = ref("confirma");
+
+      // --- Chips de caracteres sincronizados com o validador ---
+      function renderizarChips() {
+        var permitidos = document.getElementById("chips-permitidos");
+        var proibidos  = document.getElementById("chips-proibidos");
+        AuthValidators.CARACTERES_PERMITIDOS.forEach(function (c) {
+          var chip = document.createElement("span");
+          chip.className = "chip chip--ok";
+          chip.textContent = c;
+          permitidos.appendChild(chip);
+        });
+        AuthValidators.CARACTERES_PROIBIDOS.forEach(function (c) {
+          var chip = document.createElement("span");
+          chip.className = "chip chip--proibido";
+          chip.textContent = c;
+          proibidos.appendChild(chip);
+        });
+      }
+
+      function atualizarCriterios(criterios) {
+        listaRegras.querySelectorAll("li").forEach(function (li) {
+          var chave = li.getAttribute("data-criterio");
+          li.classList.toggle("atendido", !!(criterios && criterios[chave]));
+        });
+      }
+
+      function limparEstados() {
+        [email, nome, cpf, nascimento, telefone, senha, confirma].forEach(function (r) {
+          r.campo.classList.remove("campo--erro", "campo--ok");
+          r.msg.textContent = "";
+        });
+        alertaOk.hidden = true;
+        alertaErro.hidden = true;
+      }
+
+      function marcarErro(r, texto) {
+        r.campo.classList.add("campo--erro");
+        r.campo.classList.remove("campo--ok");
+        r.msg.textContent = texto;
+      }
+
+      function marcarOk(r) {
+        r.campo.classList.add("campo--ok");
+        r.campo.classList.remove("campo--erro");
+      }
+
+      // --- Máscaras dinâmicas (delegadas ao validador) ---
+      cpf.input.addEventListener("input", function () {
+        cpf.input.value = AuthValidators.mascararCPF(cpf.input.value);
+      });
+
+      telefone.input.addEventListener("input", function () {
+        telefone.input.value = AuthValidators.mascararTelefone(telefone.input.value);
+      });
+
+      // Feedback dos critérios de senha em tempo real
+      senha.input.addEventListener("input", function () {
+        atualizarCriterios(AuthValidators.validarSenhaForte(senha.input.value).criterios);
+      });
+
+      // --- Validação no envio ---
+      form.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        limparEstados();
+
+        var valido = true;
+
+        // E-mail
+        var vEmail = email.input.value.trim();
+        if (vEmail === "") {
+          marcarErro(email, "Informe o e-mail."); valido = false;
+        } else if (!AuthValidators.validarEmail(vEmail)) {
+          marcarErro(email, "E-mail em formato inválido."); valido = false;
+        } else { marcarOk(email); }
+
+        // Nome completo
+        if (!AuthValidators.validarNomeCompleto(nome.input.value)) {
+          marcarErro(nome, "Informe ao menos duas palavras, sem caracteres especiais e 1ª palavra com 2+ letras.");
+          valido = false;
+        } else { marcarOk(nome); }
+
+        // CPF
+        if (!AuthValidators.validarCPF(cpf.input.value)) {
+          marcarErro(cpf, "CPF inválido."); valido = false;
+        } else { marcarOk(cpf); }
+
+        // Data de nascimento / maioridade
+        if (nascimento.input.value === "") {
+          marcarErro(nascimento, "Informe a data de nascimento."); valido = false;
+        } else if (!AuthValidators.validarMaioridade(nascimento.input.value)) {
+          marcarErro(nascimento, "É necessário ter 18 anos ou mais."); valido = false;
+        } else { marcarOk(nascimento); }
+
+        // Telefone (opcional, mas valida se preenchido)
+        var vTel = telefone.input.value.trim();
+        if (vTel !== "" && !AuthValidators.validarTelefone(vTel)) {
+          marcarErro(telefone, "Telefone em formato inválido."); valido = false;
+        } else if (vTel !== "") { marcarOk(telefone); }
+
+        // Senha
+        var rSenha = AuthValidators.validarSenhaForte(senha.input.value);
+        atualizarCriterios(rSenha.criterios);
+        if (senha.input.value === "") {
+          marcarErro(senha, "Informe a senha."); valido = false;
+        } else if (!rSenha.valido) {
+          marcarErro(senha, "A senha não atende a todas as regras."); valido = false;
+        } else { marcarOk(senha); }
+
+        // Confirmação
+        if (confirma.input.value === "") {
+          marcarErro(confirma, "Confirme a senha."); valido = false;
+        } else if (!AuthValidators.senhasConferem(senha.input.value, confirma.input.value)) {
+          marcarErro(confirma, "As senhas não conferem."); valido = false;
+        } else if (rSenha.valido) { marcarOk(confirma); }
+
+        if (!valido) {
+          textoErro.textContent = "Não foi possível concluir o cadastro. Corrija os campos destacados.";
+          alertaErro.hidden = false;
+          return;
+        }
+
+        alertaOk.hidden = false;
+        alertaOk.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      // Limpar: restaura texto/data e os padrões de radio/select
+      btnLimpar.addEventListener("click", function () {
+        form.reset(); // restaura checked/selected padrão do HTML
+        limparEstados();
+        atualizarCriterios(null);
+        email.input.focus();
+      });
+
+      // Voltar: página anterior, com fallback para login.html
+      btnVoltar.addEventListener("click", function () {
+        if (document.referrer) {
+          window.history.back();
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      renderizarChips();
+    })();
+  </script>
+
+</body>
+</html>
