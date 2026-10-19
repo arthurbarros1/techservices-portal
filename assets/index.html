@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechServices — soluções em Tecnologia da Informação: suporte técnico, infraestrutura, desenvolvimento de sistemas e segurança da informação.">
+  <title>TechServices — Soluções em Tecnologia da Informação</title>
+
+  <!-- Folhas de estilo externas (cascata nível 1) -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+
+  <!--
+    Demonstração de <style> interno (cascata nível 2).
+    Regras definidas aqui têm prioridade sobre as folhas externas
+    quando possuem a mesma especificidade e aparecem depois delas.
+  -->
+  <style>
+    .cabecalho-topo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--cor-superficie, #ffffff);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge-logo {
+      display: inline-block;
+      padding: 0.4rem 0.9rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      background: var(--cor-primaria, #0d47a1);
+      border-radius: 8px;
+    }
+
+    .slogan {
+      font-size: 0.85rem;
+      color: #6c757d;
+    }
+
+    .menu-principal ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu-principal a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--cor-primaria, #0d47a1);
+      padding: 0.35rem 0.25rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    .menu-principal a:hover {
+      border-bottom-color: var(--cor-acento, #00bcd4);
+    }
+
+    .conteudo-central {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="cabecalho-topo">
+    <div class="marca">
+      <span class="badge-logo">TechServices</span>
+      <!--
+        Estilização inline (cascata nível 3 — maior prioridade).
+        O itálico abaixo sobrescreve qualquer regra de .slogan vinda
+        das folhas externas ou do <style> interno.
+      -->
+      <span class="slogan" style="font-style: italic;">Tecnologia que impulsiona o seu negócio</span>
+    </div>
+
+    <nav class="menu-principal" aria-label="Navegação principal">
+      <ul>
+        <li><a href="login.html">Entrar</a></li>
+        <li><a href="cadastro.html">Cadastrar</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ============================ MAIN ============================= -->
+  <main class="conteudo-central">
+
+    <!-- Faixa principal / História -->
+    <section class="inicio-hero">
+      <h1>Há mais de 15 anos cuidando da sua Tecnologia da Informação</h1>
+      <p>
+        A TechServices nasceu em 2010 com uma missão clara: aproximar a
+        tecnologia das pessoas e tornar a infraestrutura de TI um aliado do
+        crescimento, e não um obstáculo. Começamos como uma pequena equipe de
+        suporte técnico e, ao longo dos anos, expandimos nossa atuação para
+        desenvolvimento de sistemas, segurança da informação e consultoria
+        estratégica, atendendo hoje centenas de clientes em todo o país.
+      </p>
+    </section>
+
+    <!-- Vídeo institucional -->
+    <section class="secao">
+      <h2 class="titulo-secao">Vídeo institucional</h2>
+      <div class="moldura-video">
+        <!--
+          Substitua "SEU_VIDEO_ID" pelo identificador do vídeo
+          institucional de aproximadamente 1 minuto no YouTube.
+          Ex.: https://www.youtube.com/embed/SEU_VIDEO_ID
+        -->
+        <iframe
+          src="https://www.youtube.com/embed/SEU_VIDEO_ID"
+          title="Vídeo institucional da TechServices"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- Galeria de imagens -->
+    <section class="secao">
+      <h2 class="titulo-secao">Nossas instalações e equipe</h2>
+      <div class="galeria">
+        <figure>
+          <img src="assets/img/instalacoes-1.jpg" alt="Recepção da sede da TechServices">
+          <figcaption>Recepção da nossa sede</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/instalacoes-2.jpg" alt="Central de monitoramento e suporte técnico">
+          <figcaption>Central de monitoramento 24/7</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/equipe-1.jpg" alt="Equipe de desenvolvimento reunida em sala de projetos">
+          <figcaption>Equipe de desenvolvimento</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/equipe-2.jpg" alt="Analistas de infraestrutura no data center">
+          <figcaption>Nossos analistas de infraestrutura</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Vitrine estática de serviços -->
+    <section class="secao">
+      <h2 class="titulo-secao">Serviços de TI oferecidos</h2>
+      <div class="vitrine-servicos">
+        <article class="card-servico">
+          <span class="icone" aria-hidden="true">🛠️</span>
+          <h3>Suporte técnico</h3>
+          <p>Atendimento remoto e presencial para estações de trabalho,
+             servidores e periféricos, com SLA definido em contrato.</p>
+        </article>
+
+        <article class="card-servico">
+          <span class="icone" aria-hidden="true">🌐</span>
+          <h3>Infraestrutura e redes</h3>
+          <p>Projeto, implantação e gestão de redes cabeadas e sem fio,
+             firewalls e conectividade de alta disponibilidade.</p>
+        </article>
+
+        <article class="card-servico">
+          <span class="icone" aria-hidden="true">💻</span>
+          <h3>Desenvolvimento de sistemas</h3>
+          <p>Criação de aplicações web e corporativas sob medida, do
+             levantamento de requisitos à manutenção evolutiva.</p>
+        </article>
+
+        <article class="card-servico">
+          <span class="icone" aria-hidden="true">🔒</span>
+          <h3>Segurança da informação</h3>
+          <p>Políticas de proteção de dados, backup, antivírus corporativo
+             e adequação às boas práticas de conformidade.</p>
+        </article>
+
+        <article class="card-servico">
+          <span class="icone" aria-hidden="true">☁️</span>
+          <h3>Soluções em nuvem</h3>
+          <p>Migração, hospedagem e gerenciamento de ambientes em nuvem,
+             reduzindo custos de infraestrutura física.</p>
+        </article>
+
+        <article class="card-servico">
+          <span class="icone" aria-hidden="true">📊</span>
+          <h3>Consultoria em TI</h3>
+          <p>Diagnóstico, planejamento estratégico e governança de
+             tecnologia alinhados aos objetivos do seu negócio.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Painel com rolagem automática (overflow: auto) -->
+    <section class="secao">
+      <h2 class="titulo-secao">Detalhamento técnico dos serviços</h2>
+      <div class="painel-rolagem" tabindex="0" aria-label="Detalhamento técnico com rolagem">
+        <h3>Suporte técnico especializado</h3>
+        <p>
+          Nossa central de atendimento opera com equipe própria de analistas
+          certificados, responsável pelo diagnóstico e resolução de incidentes
+          em estações de trabalho, notebooks, impressoras e servidores. O
+          atendimento remoto utiliza ferramentas de acesso seguro e é
+          registrado em sistema de chamados, garantindo rastreabilidade e
+          cumprimento dos níveis de serviço acordados.
+        </p>
+
+        <h3>Infraestrutura e redes corporativas</h3>
+        <p>
+          Realizamos o projeto completo de cabeamento estruturado, configuração
+          de switches gerenciáveis, roteadores e pontos de acesso sem fio, além
+          da implantação de firewalls e redes virtuais privadas (VPN) para
+          interligação segura entre filiais e colaboradores em regime remoto.
+        </p>
+
+        <h3>Desenvolvimento de sistemas sob medida</h3>
+        <p>
+          Desenvolvemos aplicações web responsivas e sistemas corporativos
+          integrados, seguindo metodologias ágeis. O ciclo contempla
+          levantamento de requisitos, prototipação, codificação, testes
+          automatizados, homologação com o cliente e manutenção evolutiva
+          contínua após a entrega.
+        </p>
+
+        <h3>Segurança da informação e proteção de dados</h3>
+        <p>
+          Implantamos políticas de backup periódico, rotinas de recuperação de
+          desastres, soluções de antivírus corporativo e controles de acesso.
+          Também apoiamos a adequação dos processos internos às boas práticas
+          de proteção de dados pessoais e à legislação vigente.
+        </p>
+
+        <h3>Soluções em nuvem e continuidade do negócio</h3>
+        <p>
+          Planejamos e executamos a migração de ambientes locais para a nuvem,
+          dimensionando recursos conforme a demanda real. O modelo reduz custos
+          com equipamentos físicos, aumenta a disponibilidade dos sistemas e
+          garante escalabilidade para períodos de maior uso.
+        </p>
+      </div>
+    </section>
+
+    <!-- Tabela de fundadores -->
+    <section class="secao">
+      <h2 class="titulo-secao">Nossos fundadores</h2>
+      <table class="tabela-fundadores">
+        <caption>Equipe fundadora da TechServices (desde 2010).</caption>
+        <thead>
+          <tr>
+            <th scope="col">Cargo</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Breve currículo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cargo" data-rotulo="Cargo">CEO &amp; Fundador</td>
+            <td data-rotulo="Nome">Ana Carolina Ferreira</td>
+            <td data-rotulo="Currículo">Bacharel em Sistemas de Informação, com mais de 20 anos de experiência em gestão de projetos de TI e liderança de equipes técnicas.</td>
+          </tr>
+          <tr>
+            <td class="cargo" data-rotulo="Cargo">CTO (Diretor de Tecnologia)</td>
+            <td data-rotulo="Nome">Rafael Souza Lima</td>
+            <td data-rotulo="Currículo">Engenheiro de Software e especialista em arquitetura de nuvem, responsável pela estratégia técnica e pelo time de desenvolvimento.</td>
+          </tr>
+          <tr>
+            <td class="cargo" data-rotulo="Cargo">COO (Diretor de Operações)</td>
+            <td data-rotulo="Nome">Mariana Alves Costa</td>
+            <td data-rotulo="Currículo">Administradora com pós-graduação em Governança de TI, atua na gestão de processos, atendimento e relacionamento com clientes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="rodape-institucional">
+    <div class="rodape-grade">
+
+      <section>
+        <h3>Contato</h3>
+        <ul class="lista-contatos">
+          <li>Telefone fixo: <a href="tel:+558133334444">(81) 3333-4444</a></li>
+          <li>WhatsApp: <a href="https://wa.me/5581999998888" target="_blank" rel="noopener">(81) 99999-8888</a></li>
+          <li>E-mail: <a href="mailto:contato@techservices.com.br">contato@techservices.com.br</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Endereço</h3>
+        <address>
+          Av. Agamenon Magalhães, 1000 — Sala 1200<br>
+          Boa Vista, Recife/PE<br>
+          CEP 50070-160
+        </address>
+      </section>
+
+      <section>
+        <h3>Formas de pagamento</h3>
+        <div class="formas-pagamento">
+          <span class="selo-pagamento">Pix</span>
+          <span class="selo-pagamento">Visa</span>
+          <span class="selo-pagamento">Mastercard</span>
+          <span class="selo-pagamento">Boleto</span>
+          <span class="selo-pagamento">Elo</span>
+        </div>
+      </section>
+
+    </div>
+
+    <p class="rodape-base">
+      &copy; 2026 TechServices — Soluções em Tecnologia da Informação. Todos os direitos reservados.
+    </p>
+  </footer>
+
+</body>
+</html>
