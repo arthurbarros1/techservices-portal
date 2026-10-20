@@ -1,19 +1,8 @@
-/* ==========================================================================
-   auth-validators.js — Lógica reaproveitável de validação
-   Projeto: techservices-portal
-   Consumido por: login.html, troca-senha.html, cadastro.html
-   Expõe o objeto global AuthValidators com validadores e máscaras.
-   JavaScript Vanilla, sem dependências externas.
-   ========================================================================== */
-
 (function (global) {
   "use strict";
 
   /* -----------------------------------------------------------------------
-     1. Listas de caracteres especiais (conforme especificação do edital)
-        Permitidos: @ # $ % & * ! ? / \ | - _ + . =
-        Proibidos:  ¨ { } [ ] ´ ` ~ ^ : ; < > , " '
-        Montadas a partir de strings para evitar erros de escape no array.
+     1. Listas de caracteres especiais 
      ----------------------------------------------------------------------- */
   var PERMITIDOS_STR = "@#$%&*!?/\\|-_+.=";
   var PROIBIDOS_STR  = "¨{}[]´`~^:;<>,\"'";

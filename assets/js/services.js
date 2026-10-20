@@ -1,11 +1,3 @@
-/* ==========================================================================
-   services.js — Lógica da página de solicitação de serviços / carrinho
-   Projeto: techservices-portal
-   Página: servicos.html
-   Responsável por: catálogo de serviços, labels reativos (preço, prazo,
-   data prevista), inclusão/exclusão de pedidos e pré-carga de exemplos.
-   ========================================================================== */
-
 (function () {
   "use strict";
 
