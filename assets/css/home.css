@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------------------
-   1. Destaque inicial (história da empresa)
+   1. Destaque inicial 
    ------------------------------------------------------------------------- */
 .destaque-inicial {
   background: var(--cor-superficie);
@@ -26,7 +26,7 @@
 .secao { margin-bottom: 2.5rem; }
 
 /* -------------------------------------------------------------------------
-   3. Vídeo institucional (16:9 responsivo)
+   3. Vídeo institucional 
    ------------------------------------------------------------------------- */
 .moldura-video {
   position: relative;
@@ -49,7 +49,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   4. Galeria de imagens (grid de cards)
+   4. Galeria de imagens 
    ------------------------------------------------------------------------- */
 .galeria {
   display: grid;
@@ -127,7 +127,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   6. Painel de rolagem automática (REQUISITO DO EDITAL — overflow-y: auto)
+   6. Painel de rolagem automática 
    ------------------------------------------------------------------------- */
 .painel-rolagem {
   max-height: 300px;
@@ -153,7 +153,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   7. Tabela de fundadores (zebra striping)
+   7. Tabela de fundadores
    ------------------------------------------------------------------------- */
 .tabela-fundadores {
   width: 100%;
@@ -229,7 +229,7 @@
   }
 }
 /* -------------------------------------------------------------------------
-   10. Layout de tabela dos fundadores (CORRIGIDO — alinhamento ao topo)
+   10. Layout de tabela dos fundadores 
    ------------------------------------------------------------------------- */
 .layout-fundadores {
   width: 100%;
@@ -239,7 +239,7 @@
 
 .layout-fundadores > tbody > tr > td,
 .layout-fundadores > tr > td {
-  vertical-align: top;        /* ancora as duas colunas no topo */
+  vertical-align: top;        
 }
 
 .coluna-tabela {
@@ -286,19 +286,19 @@
 }
 
 /* -------------------------------------------------------------------------
-   11. Formas de pagamento como figuras (CORRIGIDO — selos lado a lado)
+   11. Formas de pagamento como figuras 
    ------------------------------------------------------------------------- */
 .formas-pagamento {
   display: flex;
-  flex-direction: row;        /* força a disposição horizontal */
+  flex-direction: row;        
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 1rem;
 }
 
 .formas-pagamento .selo-pagamento {
-  flex: 0 0 auto;             /* cada selo ocupa só a própria largura */
-  width: 48px;               /* mesma largura do SVG, evita esticar */
+  flex: 0 0 auto;           
+  width: 48px;               
   margin: 0;
   text-align: center;
 }
