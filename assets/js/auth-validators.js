@@ -10,10 +10,27 @@
   "use strict";
 
   /* -----------------------------------------------------------------------
-     1. Listas de caracteres especiais (fonte única da verdade)
+     1. Listas de caracteres especiais (conforme especificação do edital)
+        Permitidos: @ # $ % & * ! ? / \ | - _ + . =
+        Proibidos:  ¨ { } [ ] ´ ` ~ ^ : ; < > , " '
+        Montadas a partir de strings para evitar erros de escape no array.
      ----------------------------------------------------------------------- */
-  var CARACTERES_PERMITIDOS = ["@", "#", "$", "%", "&", "!", "?", "/", "+", "=", "."];
-  var CARACTERES_PROIBIDOS  = ["}", "^", ";", "<", ">"];
+  var PERMITIDOS_STR = "@#$%&*!?/\\|-_+.=";
+  var PROIBIDOS_STR  = "¨{}[]´`~^:;<>,\"'";
+
+  // Converte a string em array de caracteres únicos, preservando a ordem
+  function paraLista(str) {
+    var lista = [];
+    for (var i = 0; i < str.length; i++) {
+      if (lista.indexOf(str.charAt(i)) === -1) {
+        lista.push(str.charAt(i));
+      }
+    }
+    return lista;
+  }
+
+  var CARACTERES_PERMITIDOS = paraLista(PERMITIDOS_STR);
+  var CARACTERES_PROIBIDOS  = paraLista(PROIBIDOS_STR);
 
   /* -----------------------------------------------------------------------
      2. Validação de e-mail
@@ -21,16 +38,15 @@
   function validarEmail(email) {
     if (typeof email !== "string") { return false; }
     var valor = email.trim();
-    // Formato geral: texto@texto.dominio (sem espaços, com ao menos um ponto no domínio)
     var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(valor);
   }
 
   /* -----------------------------------------------------------------------
      3. Validação de senha forte
-     Critérios: mínimo 6 caracteres, ao menos um número, ao menos uma
-     maiúscula, ao menos um caractere permitido e nenhum proibido.
-     Retorna { valido, criterios }.
+        Critérios: mínimo 6 caracteres, ao menos um número, ao menos uma
+        maiúscula, ao menos um caractere permitido e nenhum proibido.
+        Retorna { valido, criterios }.
      ----------------------------------------------------------------------- */
   function validarSenhaForte(senha) {
     var valor = (typeof senha === "string") ? senha : "";
@@ -69,16 +85,15 @@
 
   /* -----------------------------------------------------------------------
      5. Validação de nome completo
-     Regras: ao menos duas palavras; 1ª palavra com 2+ letras;
-     sem dígitos nem caracteres especiais (apenas letras, incluindo
-     acentuadas, e espaços).
+        Regras: ao menos duas palavras; 1ª palavra com 2+ letras;
+        sem caracteres especiais (apenas letras, incluindo acentuadas,
+        apóstrofo, hífen e espaços).
      ----------------------------------------------------------------------- */
   function validarNomeCompleto(nome) {
     if (typeof nome !== "string") { return false; }
     var valor = nome.trim().replace(/\s+/g, " ");
     if (valor === "") { return false; }
 
-    // Apenas letras (com acentos), apóstrofo e hífen em cada palavra
     var regexPalavra = /^[A-Za-zÀ-ÖØ-öø-ÿ'’-]+$/;
     var palavras = valor.split(" ");
 
@@ -93,7 +108,6 @@
   /* -----------------------------------------------------------------------
      6. Máscara e validação de CPF
      ----------------------------------------------------------------------- */
-  // Aplica a máscara NNN.NNN.NNN-NN conforme o usuário digita
   function mascararCPF(valor) {
     var numeros = String(valor).replace(/\D/g, "").slice(0, 11);
     var saida = numeros;
@@ -109,18 +123,15 @@
     return saida;
   }
 
-  // Valida o CPF pelos dígitos verificadores reais
   function validarCPF(cpf) {
     var numeros = String(cpf).replace(/\D/g, "");
 
     if (numeros.length !== 11) { return false; }
-    // Rejeita sequências iguais (000..., 111..., etc.)
     if (/^(\d)\1{10}$/.test(numeros)) { return false; }
 
     var soma = 0;
     var resto;
 
-    // Primeiro dígito verificador
     for (var i = 1; i <= 9; i++) {
       soma += parseInt(numeros.substring(i - 1, i), 10) * (11 - i);
     }
@@ -128,7 +139,6 @@
     if (resto === 10 || resto === 11) { resto = 0; }
     if (resto !== parseInt(numeros.substring(9, 10), 10)) { return false; }
 
-    // Segundo dígito verificador
     soma = 0;
     for (var j = 1; j <= 10; j++) {
       soma += parseInt(numeros.substring(j - 1, j), 10) * (12 - j);
@@ -142,7 +152,6 @@
 
   /* -----------------------------------------------------------------------
      7. Validação de maioridade (idade >= 18 anos)
-     Recebe a data no formato ISO (YYYY-MM-DD) vindo do input[type=date].
      ----------------------------------------------------------------------- */
   function validarMaioridade(dataISO) {
     if (typeof dataISO !== "string" || dataISO === "") { return false; }
@@ -155,7 +164,6 @@
     var dia = parseInt(partes[2], 10);
 
     var nascimento = new Date(ano, mes - 1, dia);
-    // Rejeita datas inexistentes (ex.: 31/02) ou futuras
     if (nascimento.getFullYear() !== ano ||
         nascimento.getMonth() !== mes - 1 ||
         nascimento.getDate() !== dia) {
@@ -168,7 +176,6 @@
     var idade = hoje.getFullYear() - nascimento.getFullYear();
     var mesDiff = hoje.getMonth() - nascimento.getMonth();
 
-    // Ainda não fez aniversário neste ano?
     if (mesDiff < 0 || (mesDiff === 0 && hoje.getDate() < nascimento.getDate())) {
       idade--;
     }
@@ -178,9 +185,7 @@
 
   /* -----------------------------------------------------------------------
      8. Máscara e validação de telefone nacional
-     Aceita fixo (10 dígitos) e celular (11 dígitos, com 9 após o DDD).
      ----------------------------------------------------------------------- */
-  // Aplica (NN) NNNNN-NNNN para celular ou (NN) NNNN-NNNN para fixo
   function mascararTelefone(valor) {
     var numeros = String(valor).replace(/\D/g, "").slice(0, 11);
 
@@ -191,24 +196,19 @@
       return numeros.replace(/(\d{2})(\d{1,4})/, "($1) $2");
     }
     if (numeros.length <= 10) {
-      // Fixo: (NN) NNNN-NNNN
       return numeros.replace(/(\d{2})(\d{4})(\d{1,4})/, "($1) $2-$3");
     }
-    // Celular: (NN) NNNNN-NNNN
     return numeros.replace(/(\d{2})(\d{5})(\d{1,4})/, "($1) $2-$3");
   }
 
   function validarTelefone(tel) {
     var numeros = String(tel).replace(/\D/g, "");
 
-    // 10 dígitos (fixo) ou 11 dígitos (celular)
     if (numeros.length !== 10 && numeros.length !== 11) { return false; }
 
-    // DDD válido (11 a 99)
     var ddd = parseInt(numeros.substring(0, 2), 10);
     if (ddd < 11) { return false; }
 
-    // Se for celular (11 dígitos), o terceiro dígito deve ser 9
     if (numeros.length === 11 && numeros.charAt(2) !== "9") { return false; }
 
     return true;

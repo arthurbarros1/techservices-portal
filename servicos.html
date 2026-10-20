@@ -12,15 +12,23 @@
 
 <body>
 
-  <!-- Header simples reaproveitando o padrão institucional -->
-  <header class="cabecalho-topo" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.5rem; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-    <span class="badge-logo" style="display:inline-block; padding:0.4rem 0.9rem; font-weight:700; color:#fff; background:var(--cor-primaria, #0d47a1); border-radius:8px;">TechServices</span>
-    <nav aria-label="Navegação">
-      <a href="index.html" style="text-decoration:none; font-weight:600; color:var(--cor-primaria, #0d47a1);">Voltar ao início</a>
-    </nav>
+  <!-- ============================ HEADER ============================ -->
+  <header class="cabecalho-topo main-header">
+    <div class="cabecalho-conteudo">
+      <a href="index.html" class="marca">Tech<span>Services</span></a>
+      <nav class="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Cadastrar</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <div class="servicos-wrapper">
+  <!-- ============================= MAIN ============================= -->
+  <main class="conteudo-central">
 
     <!-- SEÇÃO 1 — Usuário logado -->
     <section class="painel-secao" aria-label="Dados do usuário">
@@ -103,7 +111,38 @@
       </div>
     </section>
 
-  </div>
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="rodape-institucional main-footer">
+    <div class="rodape-conteudo">
+      <div class="rodape-grade">
+
+        <section>
+          <h3>Contato</h3>
+          <ul class="lista-contatos">
+            <li>Telefone: <a href="tel:+558133334444">(81) 3333-4444</a></li>
+            <li>WhatsApp: <a href="https://wa.me/5581999998888" target="_blank" rel="noopener">(81) 99999-8888</a></li>
+            <li>E-mail: <a href="mailto:contato@techservices.com.br">contato@techservices.com.br</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Endereço</h3>
+          <address>
+            Av. Agamenon Magalhães, 1000 — Sala 1200<br>
+            Boa Vista, Recife/PE<br>
+            CEP 50070-160
+          </address>
+        </section>
+
+      </div>
+    </div>
+
+    <p class="rodape-base">
+      &copy; 2026 TechServices — Soluções em Tecnologia da Informação.
+    </p>
+  </footer>
 
   <script src="assets/js/services.js"></script>
 

@@ -10,53 +10,104 @@
   <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 
-<body class="auth-area">
+<body>
 
-  <main class="auth-card">
-
-    <header class="auth-cabecalho">
-      <span class="badge-logo">TechServices</span>
-      <h1>Login de clientes</h1>
-      <p>Acesse a área restrita com seu e-mail e senha cadastrados.</p>
-    </header>
-
-    <!-- Alertas no nível do formulário (exibidos via JS) -->
-    <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
-      Validação realizada com sucesso. Redirecionando…
+  <!-- ============================ HEADER ============================ -->
+  <header class="cabecalho-topo main-header">
+    <div class="cabecalho-conteudo">
+      <a href="index.html" class="marca" aria-label="TechServices — página inicial">
+        <svg class="logo-svg" width="170" height="34" viewBox="0 0 170 34" role="img" aria-label="Logo TechServices" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="4" width="26" height="26" rx="6" fill="#2563eb"/>
+          <text x="14" y="22" text-anchor="middle" font-family="system-ui, Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">TS</text>
+          <text x="35" y="23" font-family="system-ui, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">Tech<tspan fill="#9cc3ff">Services</tspan></text>
+        </svg>
+      </a>
+      <nav class="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Cadastrar</a></li>
+        </ul>
+      </nav>
     </div>
-    <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
-      <span id="texto-alerta-erro">Verifique os dados informados.</span>
-    </div>
+  </header>
 
-    <form id="form-login" class="auth-form" novalidate>
+  <!-- ============================= MAIN ============================= -->
+  <main class="conteudo-central">
 
-      <div class="campo" id="campo-email">
-        <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
-        <input type="email" id="email" name="email" autocomplete="email"
-               placeholder="voce@exemplo.com.br" required>
-        <span class="mensagem-campo" id="msg-email"></span>
+    <section class="auth-card" aria-labelledby="titulo-login">
+
+      <header class="auth-cabecalho">
+        <h1 id="titulo-login">Login de clientes</h1>
+        <p>Acesse a área restrita com seu e-mail e senha cadastrados.</p>
+      </header>
+
+      <!-- Alertas no nível do formulário (exibidos via JS) -->
+      <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
+        Validação realizada com sucesso. Redirecionando…
+      </div>
+      <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
+        <span id="texto-alerta-erro">Verifique os dados informados.</span>
       </div>
 
-      <div class="campo" id="campo-senha">
-        <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
-        <input type="password" id="senha" name="senha" autocomplete="current-password"
-               placeholder="Digite sua senha" required>
-        <span class="mensagem-campo" id="msg-senha"></span>
-      </div>
+      <form id="form-login" class="auth-form" novalidate>
 
-      <div class="auth-acoes">
-        <button type="submit" class="btn btn--primario">Realizar Login</button>
-        <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
-      </div>
+        <div class="campo" id="campo-email">
+          <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 placeholder="voce@exemplo.com.br" required>
+          <span class="mensagem-campo" id="msg-email"></span>
+        </div>
 
-    </form>
+        <div class="campo" id="campo-senha">
+          <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="password" id="senha" name="senha" autocomplete="current-password"
+                 placeholder="Digite sua senha" required>
+          <span class="mensagem-campo" id="msg-senha"></span>
+        </div>
 
-    <nav class="auth-rodape">
-      <p><a href="troca-senha.html">Esqueci / trocar minha senha</a></p>
-      <p>Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
-    </nav>
+        <div class="auth-acoes">
+          <button type="submit" class="btn btn--primario">Realizar Login</button>
+          <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
+        </div>
+
+      </form>
+
+      <nav class="auth-rodape">
+        <p><a href="troca-senha.html">Esqueci / trocar minha senha</a></p>
+        <p>Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+      </nav>
+
+    </section>
 
   </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="rodape-institucional main-footer">
+    <div class="rodape-conteudo">
+      <div class="rodape-grade">
+        <section>
+          <h3>Contato</h3>
+          <ul class="lista-contatos">
+            <li>Telefone fixo: <a href="tel:+558133334444">(81) 3333-4444</a></li>
+            <li>WhatsApp: <a href="https://wa.me/5581999998888" target="_blank" rel="noopener">(81) 99999-8888</a></li>
+            <li>E-mail: <a href="mailto:contato@techservices.com.br">contato@techservices.com.br</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Endereço</h3>
+          <address>
+            Av. Agamenon Magalhães, 1000 — Sala 1200<br>
+            Boa Vista, Recife/PE<br>
+            CEP 50070-160
+          </address>
+        </section>
+      </div>
+    </div>
+    <p class="rodape-base">
+      &copy; 2026 TechServices — Soluções em Tecnologia da Informação.
+    </p>
+  </footer>
 
   <!-- Lógica reaproveitável de validação -->
   <script src="assets/js/auth-validators.js"></script>
@@ -66,19 +117,18 @@
     (function () {
       "use strict";
 
-      var form         = document.getElementById("form-login");
-      var inputEmail   = document.getElementById("email");
-      var inputSenha   = document.getElementById("senha");
-      var campoEmail   = document.getElementById("campo-email");
-      var campoSenha   = document.getElementById("campo-senha");
-      var msgEmail     = document.getElementById("msg-email");
-      var msgSenha     = document.getElementById("msg-senha");
-      var alertaOk     = document.getElementById("alerta-sucesso");
-      var alertaErro   = document.getElementById("alerta-erro");
-      var textoErro    = document.getElementById("texto-alerta-erro");
-      var btnLimpar    = document.getElementById("btn-limpar");
+      var form       = document.getElementById("form-login");
+      var inputEmail = document.getElementById("email");
+      var inputSenha = document.getElementById("senha");
+      var campoEmail = document.getElementById("campo-email");
+      var campoSenha = document.getElementById("campo-senha");
+      var msgEmail   = document.getElementById("msg-email");
+      var msgSenha   = document.getElementById("msg-senha");
+      var alertaOk   = document.getElementById("alerta-sucesso");
+      var alertaErro = document.getElementById("alerta-erro");
+      var textoErro  = document.getElementById("texto-alerta-erro");
+      var btnLimpar  = document.getElementById("btn-limpar");
 
-      // Zera estados visuais e mensagens antes de cada validação
       function limparEstados() {
         campoEmail.classList.remove("campo--erro", "campo--ok");
         campoSenha.classList.remove("campo--erro", "campo--ok");
@@ -107,7 +157,6 @@
         var senha = inputSenha.value;
         var valido = true;
 
-        // Validação do e-mail (delegada ao auth-validators.js)
         if (email === "") {
           marcarErro(campoEmail, msgEmail, "Informe o e-mail.");
           valido = false;
@@ -118,7 +167,6 @@
           marcarOk(campoEmail);
         }
 
-        // Validação da senha (apenas preenchimento, conforme especificado)
         if (senha === "") {
           marcarErro(campoSenha, msgSenha, "Informe a senha.");
           valido = false;
@@ -132,14 +180,14 @@
           return;
         }
 
-        // Sucesso: mensagem e redirecionamento
+        // Sucesso: grava a marca de login e redireciona
+        sessionStorage.setItem("ts_logado", "sim");
         alertaOk.hidden = false;
         window.setTimeout(function () {
           window.location.href = "index.html";
         }, 1200);
       });
 
-      // Botão Limpar: zera inputs, estados e devolve o foco ao login
       btnLimpar.addEventListener("click", function () {
         form.reset();
         limparEstados();

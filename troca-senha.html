@@ -10,88 +10,135 @@
   <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 
-<body class="auth-area">
+<body>
 
-  <main class="auth-card">
-
-    <header class="auth-cabecalho">
-      <span class="badge-logo">TechServices</span>
-      <h1>Troca de senha de clientes</h1>
-      <p>Defina uma nova senha seguindo as regras de composição abaixo.</p>
-    </header>
-
-    <!-- Alertas no nível do formulário (exibidos via JS) -->
-    <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
-      Validação realizada com sucesso. Retornando ao login…
-    </div>
-    <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
-      <span id="texto-alerta-erro">Verifique os dados informados.</span>
-    </div>
-
-    <form id="form-troca" class="auth-form" novalidate>
-
-      <div class="campo" id="campo-email">
-        <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
-        <input type="email" id="email" name="email" autocomplete="email"
-               placeholder="voce@exemplo.com.br" required>
-        <span class="mensagem-campo" id="msg-email"></span>
-      </div>
-
-      <div class="campo" id="campo-senha">
-        <label for="senha">Nova senha <span class="obrigatorio" aria-hidden="true">*</span></label>
-        <input type="password" id="senha" name="senha" autocomplete="new-password"
-               placeholder="Crie uma nova senha" required>
-        <span class="mensagem-campo" id="msg-senha"></span>
-      </div>
-
-      <div class="campo" id="campo-confirma">
-        <label for="confirma">Confirmar nova senha <span class="obrigatorio" aria-hidden="true">*</span></label>
-        <input type="password" id="confirma" name="confirma" autocomplete="new-password"
-               placeholder="Repita a nova senha" required>
-        <span class="mensagem-campo" id="msg-confirma"></span>
-      </div>
-
-      <!-- Bloco instrutivo das regras de composição de senha -->
-      <section class="regras-senha" aria-label="Regras de composição de senha">
-        <h2>Regras da nova senha</h2>
-
-        <ul class="lista-regras" id="lista-regras">
-          <li data-criterio="tamanho">Mínimo de 6 caracteres</li>
-          <li data-criterio="numero">Pelo menos um número (0–9)</li>
-          <li data-criterio="maiuscula">Pelo menos uma letra maiúscula (A–Z)</li>
-          <li data-criterio="permitido">Pelo menos um caractere especial permitido</li>
-          <li data-criterio="semProibido">Sem caracteres proibidos</li>
+  <!-- ============================ HEADER ============================ -->
+  <header class="cabecalho-topo main-header">
+    <div class="cabecalho-conteudo">
+      <a href="index.html" class="marca" aria-label="TechServices — página inicial">
+        <svg class="logo-svg" width="170" height="34" viewBox="0 0 170 34" role="img" aria-label="Logo TechServices" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="4" width="26" height="26" rx="6" fill="#2563eb"/>
+          <text x="14" y="22" text-anchor="middle" font-family="system-ui, Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">TS</text>
+          <text x="35" y="23" font-family="system-ui, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">Tech<tspan fill="#9cc3ff">Services</tspan></text>
+        </svg>
+      </a>
+      <nav class="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Cadastrar</a></li>
         </ul>
+      </nav>
+    </div>
+  </header>
 
-        <div class="caracteres-senha">
-          <div class="bloco-caracteres bloco-permitidos">
-            <h3>Permitidos</h3>
-            <div class="chips-caracteres" id="chips-permitidos"><!-- preenchido via JS --></div>
-          </div>
-          <div class="bloco-caracteres bloco-proibidos">
-            <h3>Proibidos</h3>
-            <div class="chips-caracteres" id="chips-proibidos"><!-- preenchido via JS --></div>
-          </div>
-        </div>
-      </section>
+  <!-- ============================= MAIN ============================= -->
+  <main class="conteudo-central">
 
-      <div class="auth-acoes">
-        <button type="submit" class="btn btn--primario">Troca Senha</button>
-        <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
+    <section class="auth-card" aria-labelledby="titulo-troca">
+
+      <header class="auth-cabecalho">
+        <h1 id="titulo-troca">Troca de senha de clientes</h1>
+        <p>Defina uma nova senha seguindo as regras de composição abaixo.</p>
+      </header>
+
+      <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
+        Validação realizada com sucesso. Retornando ao login…
+      </div>
+      <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
+        <span id="texto-alerta-erro">Verifique os dados informados.</span>
       </div>
 
-    </form>
+      <form id="form-troca" class="auth-form" novalidate>
 
-    <nav class="auth-rodape">
-      <p>Lembrou a senha? <a href="login.html">Voltar ao login</a></p>
-    </nav>
+        <div class="campo" id="campo-email">
+          <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 placeholder="voce@exemplo.com.br" required>
+          <span class="mensagem-campo" id="msg-email"></span>
+        </div>
+
+        <div class="campo" id="campo-senha">
+          <label for="senha">Nova senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="password" id="senha" name="senha" autocomplete="new-password"
+                 placeholder="Crie uma nova senha" required>
+          <span class="mensagem-campo" id="msg-senha"></span>
+        </div>
+
+        <div class="campo" id="campo-confirma">
+          <label for="confirma">Confirmar nova senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="password" id="confirma" name="confirma" autocomplete="new-password"
+                 placeholder="Repita a nova senha" required>
+          <span class="mensagem-campo" id="msg-confirma"></span>
+        </div>
+
+        <section class="regras-senha" aria-label="Regras de composição de senha">
+          <h2>Regras da nova senha</h2>
+
+          <ul class="lista-regras" id="lista-regras">
+            <li data-criterio="tamanho">Mínimo de 6 caracteres</li>
+            <li data-criterio="numero">Pelo menos um número (0–9)</li>
+            <li data-criterio="maiuscula">Pelo menos uma letra maiúscula (A–Z)</li>
+            <li data-criterio="permitido">Pelo menos um caractere especial permitido</li>
+            <li data-criterio="semProibido">Sem caracteres proibidos</li>
+          </ul>
+
+          <div class="caracteres-senha">
+            <div class="bloco-caracteres bloco-permitidos">
+              <h3>Permitidos</h3>
+              <div class="chips-caracteres" id="chips-permitidos"></div>
+            </div>
+            <div class="bloco-caracteres bloco-proibidos">
+              <h3>Proibidos</h3>
+              <div class="chips-caracteres" id="chips-proibidos"></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="auth-acoes">
+          <button type="submit" class="btn btn--primario">Troca Senha</button>
+          <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
+        </div>
+
+      </form>
+
+      <nav class="auth-rodape">
+        <p>Lembrou a senha? <a href="login.html">Voltar ao login</a></p>
+      </nav>
+
+    </section>
 
   </main>
 
-  <!-- Lógica reaproveitável de validação -->
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="rodape-institucional main-footer">
+    <div class="rodape-conteudo">
+      <div class="rodape-grade">
+        <section>
+          <h3>Contato</h3>
+          <ul class="lista-contatos">
+            <li>Telefone fixo: <a href="tel:+558133334444">(81) 3333-4444</a></li>
+            <li>WhatsApp: <a href="https://wa.me/5581999998888" target="_blank" rel="noopener">(81) 99999-8888</a></li>
+            <li>E-mail: <a href="mailto:contato@techservices.com.br">contato@techservices.com.br</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Endereço</h3>
+          <address>
+            Av. Agamenon Magalhães, 1000 — Sala 1200<br>
+            Boa Vista, Recife/PE<br>
+            CEP 50070-160
+          </address>
+        </section>
+      </div>
+    </div>
+    <p class="rodape-base">
+      &copy; 2026 TechServices — Soluções em Tecnologia da Informação.
+    </p>
+  </footer>
+
   <script src="assets/js/auth-validators.js"></script>
 
-  <!-- Orquestração específica da tela de troca de senha -->
   <script>
     (function () {
       "use strict";
@@ -112,7 +159,6 @@
       var btnLimpar     = document.getElementById("btn-limpar");
       var listaRegras   = document.getElementById("lista-regras");
 
-      // --- Sincroniza os chips de caracteres com as listas do validador ---
       function renderizarChips() {
         var permitidos = document.getElementById("chips-permitidos");
         var proibidos  = document.getElementById("chips-proibidos");
@@ -132,16 +178,10 @@
         });
       }
 
-      // Atualiza as bolinhas da lista de critérios em tempo real
       function atualizarCriterios(criterios) {
-        var itens = listaRegras.querySelectorAll("li");
-        itens.forEach(function (li) {
+        listaRegras.querySelectorAll("li").forEach(function (li) {
           var chave = li.getAttribute("data-criterio");
-          if (criterios && criterios[chave]) {
-            li.classList.add("atendido");
-          } else {
-            li.classList.remove("atendido");
-          }
+          li.classList.toggle("atendido", !!(criterios && criterios[chave]));
         });
       }
 
@@ -167,7 +207,6 @@
         campo.classList.remove("campo--erro");
       }
 
-      // Feedback em tempo real dos critérios enquanto digita a nova senha
       inputSenha.addEventListener("input", function () {
         var resultado = AuthValidators.validarSenhaForte(inputSenha.value);
         atualizarCriterios(resultado.criterios);
@@ -182,7 +221,6 @@
         var confirma = inputConfirma.value;
         var valido   = true;
 
-        // 1) E-mail
         if (email === "") {
           marcarErro(campoEmail, msgEmail, "Informe o e-mail.");
           valido = false;
@@ -193,7 +231,6 @@
           marcarOk(campoEmail);
         }
 
-        // 2) Nova senha atende às regras?
         var resultadoSenha = AuthValidators.validarSenhaForte(senha);
         atualizarCriterios(resultadoSenha.criterios);
 
@@ -207,7 +244,6 @@
           marcarOk(campoSenha);
         }
 
-        // 3) Confirmação confere?
         if (confirma === "") {
           marcarErro(campoConfirma, msgConfirma, "Confirme a nova senha.");
           valido = false;
@@ -224,14 +260,12 @@
           return;
         }
 
-        // Sucesso: mensagem e retorno ao login
         alertaOk.hidden = false;
         window.setTimeout(function () {
           window.location.href = "login.html";
         }, 1200);
       });
 
-      // Botão Limpar: zera inputs, estados, critérios e foca o login
       btnLimpar.addEventListener("click", function () {
         form.reset();
         limparEstados();
@@ -239,7 +273,6 @@
         inputEmail.focus();
       });
 
-      // Inicialização
       renderizarChips();
     })();
   </script>

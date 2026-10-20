@@ -1,85 +1,41 @@
 /* ==========================================================================
-   auth.css — Autenticação e onboarding (reformulado)
+   auth.css — Autenticação e onboarding (limpo)
    Projeto: techservices-portal
    Páginas: login.html · cadastro.html · troca-senha.html
-   Depende dos tokens de global.css.
+   Card centralizado sobre fundo neutro, com header padrão (de global.css)
+   no topo e sem rodapé. Depende dos tokens de global.css.
    ========================================================================== */
 
 /* -------------------------------------------------------------------------
-   1. Área de fundo e card centralizado
+   1. Card do formulário
    ------------------------------------------------------------------------- */
-.auth-area {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(var(--esp-5), 5vw, var(--esp-7)) var(--esp-4);
-  background:
-    linear-gradient(135deg,
-      var(--marinho-900) 0%,
-      var(--marinho-700) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Textura sutil de grade — profundidade sóbria, sem distrair */
-.auth-area::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
-  pointer-events: none;
-}
-
 .auth-card {
-  position: relative;
-  z-index: 1;
   width: 100%;
-  max-width: 460px;        /* login / troca de senha */
+  max-width: 460px;                 /* login / troca de senha */
+  margin: 2rem auto;                /* centralizado, sem colar no topo */
   background: var(--cor-superficie);
   border: 1px solid var(--borda);
-  border-radius: var(--raio-lg);
-  box-shadow: var(--sombra-lg);
-  padding: clamp(var(--esp-5), 4vw, var(--esp-7));
-  overflow: hidden;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 2rem;
 }
 
-/* Fita superior de acento */
-.auth-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 4px;
-  background: linear-gradient(90deg,
-    var(--cor-primaria) 0%,
-    var(--cor-secundaria) 55%,
-    var(--cor-acento) 100%);
-}
-
-.auth-card--amplo { max-width: 740px; }
+.auth-card--amplo { max-width: 720px; }   /* cadastro */
 
 .auth-cabecalho {
-  text-align: center;
-  margin-bottom: var(--esp-6);
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--borda);
 }
 
-.auth-cabecalho .badge-logo { margin-bottom: var(--esp-4); }
-
 .auth-cabecalho h1 {
-  margin-bottom: var(--esp-2);
-  font-size: var(--txt-xl);
-  font-weight: 800;
+  margin-bottom: 0.35rem;
+  font-size: 1.5rem;
 }
 
 .auth-cabecalho p {
-  font-size: var(--txt-sm);
+  font-size: 0.95rem;
   color: var(--cor-texto-suave);
-  max-width: 44ch;
-  margin: 0 auto;
 }
 
 /* -------------------------------------------------------------------------
@@ -88,17 +44,17 @@
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: var(--esp-5);
+  gap: 1.25rem;
 }
 
 .campo {
   display: flex;
   flex-direction: column;
-  gap: var(--esp-2);
+  gap: 0.4rem;
 }
 
 .campo label {
-  font-size: var(--txt-sm);
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--cor-texto);
 }
@@ -112,53 +68,45 @@
 .campo input[type="tel"],
 .campo select {
   width: 100%;
-  padding: var(--esp-3) var(--esp-4);
-  font-size: var(--txt-base);
+  padding: 0.65rem 0.8rem;
+  font-size: 1rem;
   font-family: inherit;
   color: var(--cor-texto);
   background: var(--cor-superficie);
-  border: 1.5px solid var(--borda-forte);
+  border: 1px solid var(--borda-forte);
   border-radius: var(--raio-sm);
-  transition: border-color var(--transicao),
-              box-shadow var(--transicao),
-              background var(--transicao);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.campo input::placeholder { color: var(--slate-400); }
+.campo input::placeholder { color: #9ca3af; }
 
-.campo input:hover,
-.campo select:hover { border-color: var(--slate-400); }
+.campo input:focus,
+.campo select:focus {
+  outline: none;
+  border-color: var(--cor-secundaria);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
 
 .campo .ajuda {
-  font-size: var(--txt-xs);
+  font-size: 0.8rem;
   color: var(--cor-texto-suave);
 }
 
 .campo-linha {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--esp-5);
+  gap: 1.25rem;
 }
 
 /* -------------------------------------------------------------------------
-   3. Foco e validação por campo
+   3. Validação por campo
    ------------------------------------------------------------------------- */
-.campo input:focus,
-.campo select:focus {
-  outline: none;
-  border-color: var(--cor-secundaria);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
-}
-
 .campo--erro input,
-.campo--erro select {
-  border-color: var(--cor-erro);
-  background: var(--cor-erro-bg);
-}
+.campo--erro select { border-color: var(--cor-erro); }
 
 .campo--erro input:focus,
 .campo--erro select:focus {
-  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.14);
+  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.13);
 }
 
 .campo--ok input,
@@ -166,11 +114,11 @@
 
 .campo--ok input:focus,
 .campo--ok select:focus {
-  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.14);
+  box-shadow: 0 0 0 3px rgba(22, 128, 61, 0.13);
 }
 
 .campo .mensagem-campo {
-  font-size: var(--txt-xs);
+  font-size: 0.8rem;
   min-height: 1rem;
   line-height: 1.3;
 }
@@ -179,118 +127,82 @@
 .campo--ok  .mensagem-campo { color: var(--cor-sucesso); }
 
 /* -------------------------------------------------------------------------
-   4. Radio buttons (estado civil) — opções em "pílula"
+   4. Radio buttons (estado civil)
    ------------------------------------------------------------------------- */
 .grupo-radio {
   border: 1px solid var(--borda);
   border-radius: var(--raio);
-  padding: var(--esp-4);
-  background: var(--slate-50);
+  padding: 1rem 1.1rem;
 }
 
 .grupo-radio legend {
-  font-size: var(--txt-sm);
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--cor-texto);
-  padding: 0 var(--esp-2);
+  padding: 0 0.4rem;
 }
 
 .opcoes-radio {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--esp-3);
-  margin-top: var(--esp-3);
+  gap: 0.6rem 1rem;
+  margin-top: 0.6rem;
 }
 
 .opcao-radio {
   display: flex;
   align-items: center;
-  gap: var(--esp-2);
-  padding: var(--esp-3);
-  font-size: var(--txt-sm);
+  gap: 0.5rem;
+  font-size: 0.92rem;
   color: var(--cor-texto);
-  background: var(--cor-superficie);
-  border: 1.5px solid var(--borda);
-  border-radius: var(--raio-sm);
   cursor: pointer;
-  transition: border-color var(--transicao),
-              box-shadow var(--transicao);
-}
-
-.opcao-radio:hover { border-color: var(--cor-secundaria); }
-
-.opcao-radio:has(input:checked) {
-  border-color: var(--cor-secundaria);
-  box-shadow: inset 0 0 0 1px var(--cor-secundaria);
-  background: rgba(37, 99, 235, 0.04);
 }
 
 .opcao-radio input[type="radio"] {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.05rem;
+  height: 1.05rem;
   accent-color: var(--cor-secundaria);
   cursor: pointer;
 }
 
 /* -------------------------------------------------------------------------
-   5. Combobox (escolaridade)
+   5. Combobox (escolaridade) — seta nativa do navegador
    ------------------------------------------------------------------------- */
-.campo select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--cor-secundaria) 50%),
-    linear-gradient(135deg, var(--cor-secundaria) 50%, transparent 50%);
-  background-position:
-    calc(100% - 20px) calc(1.25rem),
-    calc(100% - 15px) calc(1.25rem);
-  background-size: 5px 5px, 5px 5px;
-  background-repeat: no-repeat;
-  padding-right: var(--esp-6);
-  cursor: pointer;
-}
+.campo select { cursor: pointer; }
 
 /* -------------------------------------------------------------------------
    6. Quadro de regras de senha
    ------------------------------------------------------------------------- */
 .regras-senha {
-  background: var(--slate-50);
+  background: #f9fafb;
   border: 1px solid var(--borda);
-  border-left: 4px solid var(--cor-secundaria);
   border-radius: var(--raio);
-  padding: var(--esp-4) var(--esp-5);
+  padding: 1.1rem 1.25rem;
 }
 
 .regras-senha h2 {
-  margin-bottom: var(--esp-3);
-  font-size: var(--txt-base);
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
   color: var(--cor-primaria);
 }
 
 .lista-regras {
-  margin-bottom: var(--esp-4);
+  margin-bottom: 1rem;
   display: grid;
-  gap: var(--esp-2);
+  gap: 0.4rem;
 }
 
 .lista-regras li {
   display: flex;
   align-items: center;
-  gap: var(--esp-2);
-  font-size: var(--txt-sm);
+  gap: 0.5rem;
+  font-size: 0.88rem;
   color: var(--cor-texto-suave);
-  transition: color var(--transicao);
 }
 
 .lista-regras li::before {
-  content: "";
-  width: 1.1rem;
-  height: 1.1rem;
-  flex-shrink: 0;
-  border: 2px solid var(--borda-forte);
-  border-radius: 50%;
-  transition: all var(--transicao);
+  content: "○";
+  color: var(--borda-forte);
 }
 
 .lista-regras li.atendido {
@@ -299,75 +211,60 @@
 }
 
 .lista-regras li.atendido::before {
-  content: "✔";
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.68rem;
-  color: #ffffff;
-  background: var(--cor-sucesso);
-  border-color: var(--cor-sucesso);
+  content: "✓";
+  color: var(--cor-sucesso);
+  font-weight: 700;
 }
 
 .caracteres-senha {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: var(--esp-3);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.85rem;
 }
 
 .bloco-caracteres {
+  border: 1px solid var(--borda);
   border-radius: var(--raio-sm);
-  padding: var(--esp-3) var(--esp-4);
-  border: 1px solid transparent;
+  padding: 0.75rem 0.9rem;
 }
 
 .bloco-caracteres h3 {
-  margin-bottom: var(--esp-2);
-  font-size: var(--txt-xs);
+  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 }
 
-.bloco-permitidos {
-  background: var(--cor-sucesso-bg);
-  border-color: var(--cor-sucesso-bd);
-}
 .bloco-permitidos h3 { color: var(--cor-sucesso); }
-
-.bloco-proibidos {
-  background: var(--cor-erro-bg);
-  border-color: var(--cor-erro-bd);
-}
-.bloco-proibidos h3 { color: var(--cor-erro); }
+.bloco-proibidos h3  { color: var(--cor-erro); }
 
 .chips-caracteres {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--esp-2);
+  gap: 0.4rem;
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2rem;
-  height: 2rem;
-  padding: 0 var(--esp-2);
+  min-width: 1.9rem;
+  height: 1.9rem;
+  padding: 0 0.45rem;
   font-family: "Courier New", Courier, monospace;
-  font-size: var(--txt-md);
+  font-size: 1rem;
   font-weight: 700;
+  border: 1px solid var(--borda-forte);
   border-radius: var(--raio-sm);
   background: var(--cor-superficie);
-  box-shadow: var(--sombra-sm);
 }
 
-.chip--ok { color: var(--cor-sucesso); border: 1.5px solid #86efac; }
+.chip--ok { color: var(--cor-sucesso); border-color: var(--cor-sucesso-bd); }
 
 .chip--proibido {
   color: var(--cor-erro);
-  border: 1.5px solid #fca5a5;
+  border-color: var(--cor-erro-bd);
   text-decoration: line-through;
-  text-decoration-thickness: 2px;
 }
 
 /* -------------------------------------------------------------------------
@@ -376,33 +273,30 @@
 .alerta {
   display: flex;
   align-items: flex-start;
-  gap: var(--esp-3);
-  margin-bottom: var(--esp-5);
-  padding: var(--esp-3) var(--esp-4);
-  border-radius: var(--raio-sm);
-  font-size: var(--txt-sm);
-  line-height: 1.5;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  padding: 0.8rem 1rem;
   border: 1px solid transparent;
-  border-left-width: 4px;
+  border-radius: var(--raio-sm);
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-.alerta::before { font-weight: 700; line-height: 1.4; }
+.alerta::before { font-weight: 700; }
 
 .alerta--sucesso {
   background: var(--cor-sucesso-bg);
   border-color: var(--cor-sucesso-bd);
-  border-left-color: var(--cor-sucesso);
   color: #166534;
 }
-.alerta--sucesso::before { content: "✔"; }
+.alerta--sucesso::before { content: "✓"; }
 
 .alerta--erro {
   background: var(--cor-erro-bg);
   border-color: var(--cor-erro-bd);
-  border-left-color: var(--cor-erro);
   color: #991b1b;
 }
-.alerta--erro::before { content: "✖"; }
+.alerta--erro::before { content: "✕"; }
 
 .alerta[hidden] { display: none; }
 
@@ -411,31 +305,38 @@
    ------------------------------------------------------------------------- */
 .auth-acoes {
   display: flex;
-  flex-direction: column;
-  gap: var(--esp-3);
-  margin-top: var(--esp-2);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
 
-/* Dentro do card, os botões ocupam a largura toda */
-.auth-acoes .btn { width: 100%; }
+.auth-acoes .btn { flex: 1; min-width: 140px; }
 
 .auth-rodape {
-  margin-top: var(--esp-6);
-  padding-top: var(--esp-5);
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--borda);
   text-align: center;
-  font-size: var(--txt-sm);
+  font-size: 0.9rem;
   color: var(--cor-texto-suave);
 }
 
-.auth-rodape p { margin: var(--esp-1) 0; }
+.auth-rodape p { margin: 0.25rem 0; }
 .auth-rodape a { font-weight: 600; }
 
 /* -------------------------------------------------------------------------
    9. Responsividade
    ------------------------------------------------------------------------- */
 @media (max-width: 540px) {
-  .auth-card { padding: var(--esp-5) var(--esp-4); }
+  .auth-card { padding: 1.5rem 1.25rem; }
   .campo-linha { grid-template-columns: 1fr; }
-  .opcoes-radio { grid-template-columns: 1fr; }
+  .auth-acoes .btn { flex: 1 1 100%; }
+}
+/* -------------------------------------------------------------------------
+   10. Logo SVG no header (telas de autenticação)
+   ------------------------------------------------------------------------- */
+.marca .logo-svg {
+  display: block;
+  height: 34px;
+  width: auto;
 }
