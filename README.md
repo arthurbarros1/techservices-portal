@@ -116,6 +116,7 @@ techservices-portal/
 ├── servicos.html                 # Painel do cliente / solicitação de serviços de TI
 └── troca-senha.html              # Página de recuperação e troca de credenciais de acesso
 
+```
 ---
 
 ## 💻 Como Rodar o Projeto Localmente
@@ -123,16 +124,17 @@ techservices-portal/
 1. Clone o repositório em sua máquina:
 
 ```bash
-git clone [https://github.com/Arthurbarros1/techservices-portal.git](https://github.com/Arthurbarros1/techservices-portal.git)
-   
+git clone https://github.com/Arthurbarros1/techservices-portal.git
+```
+
 2. Acesse a pasta do projeto:
-   '''
-   cd techservices-portal
-   ```
+
+```bash
+cd techservices-portal
+```
 
 3. Abra o arquivo `index.html` diretamente em seu navegador web preferido:
    * **Dica:** Se estiver utilizando o **Visual Studio Code**, clique com o botão direito sobre o `index.html` e selecione **"Open with Live Server"**.
-
 ---
 
 ## 👨‍💻 Autor
