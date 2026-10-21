@@ -93,30 +93,28 @@ O portal é composto por **5 páginas interligadas**, mantendo coerência visual
 
 ## 📂 Estrutura de Diretórios
 
+## 📁 Estrutura do Projeto
+
 ```bash
 techservices-portal/
 ├── assets/
 │   ├── css/
-│   │   ├── global.css            # Tipografia, variáveis, botões e layout comum
-│   │   ├── home.css              # Estilos específicos da página institucional
-│   │   ├── auth.css              # Estilos das páginas de Login, Cadastro e Troca de Senha
-│   │   └── services.css          # Estilos do painel de serviços e tabelas dinâmicas
-│   ├── js/
-│   │   ├── auth-validators.js    # Biblioteca modular de validações (CPF, senha, datas, etc.)
-│   │   ├── auth.js               # Manipulação de eventos das telas de autenticação
-│   │   └── services.js           # Lógica reativa do carrinho, cálculos de data e CRUD
-│   └── img/
-│       ├── logo.svg              # Identidade visual da TechServices
-│       ├── payments/             # Ícones das formas de pagamento (Pix, cartões)
-│       └── team/                 # Fotos das instalações e fundadores
-├── index.html                    # 1. Página de apresentação institucional
-├── login.html                    # 2. Página de login de clientes
-├── troca-senha.html              # 3. Página de troca de senha
-├── cadastro.html                 # 4. Página de cadastro de novos clientes
-├── servicos.html                 # 5. Painel de solicitação de serviços de TI
-├── .gitignore                    # Arquivos ignorados pelo controle de versão
-└── README.md                     # Documentação técnica do projeto
-```
+│   │   ├── auth.css              # Estilos dos formulários (login, cadastro, troca de senha)
+│   │   ├── global.css            # Variáveis CSS, reset, header e footer padronizados
+│   │   ├── home.css              # Estilização exclusiva da página principal (vitrine, grid, overflow)
+│   │   └── services.css          # Layout do dashboard e tabela de ordens de serviço
+│   ├── img/                      # Imagens locais, logotipos e fotos da galeria institucional
+│   └── js/
+│       ├── auth-validators.js    # Lógica de validações (CPF, maioridade, regex de senha, nome)
+│       └── services.js           # Reatividade do catálogo, cálculo de prazos e manipulação da tabela
+├── .gitignore                    # Arquivos e pastas desconsiderados pelo controle de versão
+├── cadastro.html                 # Página de formulário de cadastro de novos clientes
+├── index.html                    # Página institucional de apresentação (Home)
+├── LICENSE                       # Licença de uso do projeto (MIT)
+├── login.html                    # Página de autenticação / login de clientes
+├── README.md                     # Documentação técnica e instruções do projeto
+├── servicos.html                 # Painel do cliente / solicitação de serviços de TI
+└── troca-senha.html              # Página de recuperação e troca de credenciais de acesso
 
 ---
 
