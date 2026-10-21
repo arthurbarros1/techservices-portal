@@ -120,12 +120,11 @@ techservices-portal/
 
 ## 💻 Como Rodar o Projeto Localmente
 
-1. Clone o repositório em sua máquina:
-   ```bash
+.  1. Clone o repositório em sua máquina:
+   ```
    git clone https://github.com/Arthurbarros1/techservices-portal.git
    ```
-
-2. Acesse a pasta do projeto:
+.  2. Acesse a pasta do projeto:
    ```bash
    cd techservices-portal
    ```
