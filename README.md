@@ -142,7 +142,7 @@ cd techservices-portal
 Desenvolvido por **Arthur Barros**:
 
 * **GitHub:** [@Arthurbarros1](https://github.com/Arthurbarros1)
-* **LinkedIn:** [Perfil do LinkedIn](www.linkedin.com/in/arthur-meirinho)
+* **LinkedIn:** [arthur-meirinho](www.linkedin.com/in/arthur-meirinho)
 
 ---
 
