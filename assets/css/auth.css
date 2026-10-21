@@ -1,43 +1,151 @@
 /* -------------------------------------------------------------------------
-   1. Card do formulário
+   1. Estrutura split (2 colunas)
    ------------------------------------------------------------------------- */
-.auth-card {
+.auth-split {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
-  max-width: 460px;                 /* login / troca de senha */
-  margin: 2rem auto;                /* centralizado, sem colar no topo */
-  background: var(--cor-superficie);
-  border: 1px solid var(--borda);
-  border-radius: var(--raio);
-  box-shadow: var(--sombra);
-  padding: 2rem;
+  min-height: calc(100vh - 66px);   /* desconta o header */
 }
 
-.auth-card--amplo { max-width: 720px; }   /* cadastro */
+/* Variante para o cadastro: formulário mais largo que o painel */
+.auth-split--amplo {
+  grid-template-columns: 1fr 1.4fr;
+}
 
+/* --- Painel visual (esquerda) --- */
+.auth-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem);
+  overflow: hidden;
+  background:
+    radial-gradient(1000px 500px at 20% 10%, rgba(99, 102, 241, 0.25), transparent 60%),
+    radial-gradient(800px 600px at 90% 90%, rgba(56, 189, 248, 0.20), transparent 55%),
+    linear-gradient(145deg, var(--fundo-1) 0%, var(--fundo-0) 100%);
+  border-right: 1px solid var(--borda);
+}
+
+.auth-visual__marca {
+  display: inline-flex;
+  margin-bottom: 2rem;
+}
+
+.auth-visual h2 {
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--texto);
+}
+
+.auth-visual h2 span {
+  background: linear-gradient(135deg, var(--acento), var(--indigo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.auth-visual p {
+  font-size: 1.05rem;
+  color: var(--texto-suave);
+  max-width: 42ch;
+}
+
+/* Lista de destaques no painel visual */
+.auth-visual__lista {
+  margin-top: 2rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.auth-visual__lista li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.auth-visual__lista li::before {
+  content: "✓";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--acento);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid var(--acento-bd, rgba(56, 189, 248, 0.35));
+  border-radius: 50%;
+}
+
+/* --- Área do formulário (direita) --- */
+.auth-form-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  background: var(--fundo-0);
+  overflow-y: auto;
+}
+
+.auth-form-inner {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-split--amplo .auth-form-inner { max-width: 560px; }
+
+/* -------------------------------------------------------------------------
+   2. Cabeçalho do formulário
+   ------------------------------------------------------------------------- */
 .auth-cabecalho {
   margin-bottom: 1.75rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--borda);
 }
 
 .auth-cabecalho h1 {
-  margin-bottom: 0.35rem;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
 }
 
 .auth-cabecalho p {
   font-size: 0.95rem;
-  color: var(--cor-texto-suave);
+  color: var(--texto-suave);
 }
 
 /* -------------------------------------------------------------------------
-   2. Formulário
+   3. Formulário e campos
    ------------------------------------------------------------------------- */
 .auth-form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
+
+/* Agrupamento lógico de campos (cadastro) */
+.grupo-campos {
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+  background: var(--fundo-1);
+}
+
+.grupo-campos > legend {
+  padding: 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--acento);
+}
+
+.grupo-campos .auth-form { gap: 1.1rem; margin-top: 0.5rem; }
 
 .campo {
   display: flex;
@@ -46,12 +154,12 @@
 }
 
 .campo label {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  color: var(--cor-texto);
+  color: var(--texto);
 }
 
-.campo .obrigatorio { color: var(--cor-erro); margin-left: 2px; }
+.campo .obrigatorio { color: var(--erro); margin-left: 2px; }
 
 .campo input[type="text"],
 .campo input[type="email"],
@@ -60,152 +168,162 @@
 .campo input[type="tel"],
 .campo select {
   width: 100%;
-  padding: 0.65rem 0.8rem;
+  padding: 0.75rem 0.9rem;
   font-size: 1rem;
   font-family: inherit;
-  color: var(--cor-texto);
-  background: var(--cor-superficie);
-  border: 1px solid var(--borda-forte);
+  color: var(--texto);
+  background: var(--fundo-2);
+  border: 1.5px solid var(--borda);
   border-radius: var(--raio-sm);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color var(--transicao), box-shadow var(--transicao),
+              background var(--transicao);
 }
 
-.campo input::placeholder { color: #9ca3af; }
+.campo input::placeholder { color: var(--texto-tenue); }
+
+.campo input:hover,
+.campo select:hover { border-color: var(--borda-forte); }
 
 .campo input:focus,
 .campo select:focus {
   outline: none;
-  border-color: var(--cor-secundaria);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  border-color: var(--acento);
+  background: var(--fundo-3);
+  box-shadow: 0 0 0 3px var(--acento-glow);
 }
 
-.campo .ajuda {
-  font-size: 0.8rem;
-  color: var(--cor-texto-suave);
-}
+.campo .ajuda { font-size: 0.78rem; color: var(--texto-tenue); }
 
 .campo-linha {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1.1rem;
 }
 
-/* -------------------------------------------------------------------------
-   3. Validação por campo
-   ------------------------------------------------------------------------- */
+/* Validação por campo */
 .campo--erro input,
-.campo--erro select { border-color: var(--cor-erro); }
-
+.campo--erro select { border-color: var(--erro); }
 .campo--erro input:focus,
-.campo--erro select:focus {
-  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.13);
-}
+.campo--erro select:focus { box-shadow: 0 0 0 3px var(--erro-bg); }
 
 .campo--ok input,
-.campo--ok select { border-color: var(--cor-sucesso); }
-
+.campo--ok select { border-color: var(--sucesso); }
 .campo--ok input:focus,
-.campo--ok select:focus {
-  box-shadow: 0 0 0 3px rgba(22, 128, 61, 0.13);
-}
+.campo--ok select:focus { box-shadow: 0 0 0 3px var(--sucesso-bg); }
 
-.campo .mensagem-campo {
-  font-size: 0.8rem;
-  min-height: 1rem;
-  line-height: 1.3;
-}
-
-.campo--erro .mensagem-campo { color: var(--cor-erro); }
-.campo--ok  .mensagem-campo { color: var(--cor-sucesso); }
+.campo .mensagem-campo { font-size: 0.78rem; min-height: 1rem; line-height: 1.3; }
+.campo--erro .mensagem-campo { color: var(--erro); }
+.campo--ok  .mensagem-campo { color: var(--sucesso); }
 
 /* -------------------------------------------------------------------------
-   4. Radio buttons (estado civil)
+   4. Radio buttons (estado civil) — grid de pílulas
    ------------------------------------------------------------------------- */
 .grupo-radio {
   border: 1px solid var(--borda);
   border-radius: var(--raio);
   padding: 1rem 1.1rem;
+  background: var(--fundo-1);
 }
 
 .grupo-radio legend {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  color: var(--cor-texto);
+  color: var(--texto);
   padding: 0 0.4rem;
 }
 
 .opcoes-radio {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 0.6rem 1rem;
-  margin-top: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.65rem;
 }
 
 .opcao-radio {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.92rem;
-  color: var(--cor-texto);
+  gap: 0.55rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  background: var(--fundo-2);
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-sm);
   cursor: pointer;
+  transition: all var(--transicao);
+}
+
+.opcao-radio:hover { border-color: var(--borda-forte); color: var(--texto); }
+
+.opcao-radio:has(input:checked) {
+  border-color: var(--acento);
+  background: rgba(56, 189, 248, 0.08);
+  color: var(--texto);
 }
 
 .opcao-radio input[type="radio"] {
-  width: 1.05rem;
-  height: 1.05rem;
-  accent-color: var(--cor-secundaria);
+  width: 1.05rem; height: 1.05rem;
+  accent-color: var(--acento);
   cursor: pointer;
 }
 
 /* -------------------------------------------------------------------------
-   5. Combobox (escolaridade)
+   5. Combobox
    ------------------------------------------------------------------------- */
-.campo select { cursor: pointer; }
+.campo select { cursor: pointer; appearance: none; -webkit-appearance: none; }
+
+.campo select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--acento) 50%),
+    linear-gradient(135deg, var(--acento) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 1.3rem, calc(100% - 15px) 1.3rem;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.5rem;
+}
+
+.campo select option { background: var(--fundo-2); color: var(--texto); }
 
 /* -------------------------------------------------------------------------
    6. Quadro de regras de senha
    ------------------------------------------------------------------------- */
 .regras-senha {
-  background: #f9fafb;
+  background: var(--fundo-1);
   border: 1px solid var(--borda);
+  border-left: 3px solid var(--acento);
   border-radius: var(--raio);
   padding: 1.1rem 1.25rem;
 }
 
 .regras-senha h2 {
   margin-bottom: 0.8rem;
-  font-size: 1rem;
-  color: var(--cor-primaria);
+  font-size: 0.95rem;
+  color: var(--texto);
 }
 
-.lista-regras {
-  margin-bottom: 1rem;
-  display: grid;
-  gap: 0.4rem;
-}
+.lista-regras { margin-bottom: 1rem; display: grid; gap: 0.45rem; }
 
 .lista-regras li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.88rem;
-  color: var(--cor-texto-suave);
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; color: var(--texto-suave);
+  transition: color var(--transicao);
 }
 
 .lista-regras li::before {
-  content: "○";
-  color: var(--borda-forte);
+  content: "";
+  width: 1.05rem; height: 1.05rem; flex-shrink: 0;
+  border: 2px solid var(--borda-forte);
+  border-radius: 50%;
+  transition: all var(--transicao);
 }
 
-.lista-regras li.atendido {
-  color: var(--cor-sucesso);
-  font-weight: 600;
-}
+.lista-regras li.atendido { color: var(--sucesso); font-weight: 600; }
 
 .lista-regras li.atendido::before {
   content: "✓";
-  color: var(--cor-sucesso);
-  font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; color: var(--fundo-0);
+  background: var(--sucesso); border-color: var(--sucesso);
 }
 
 .caracteres-senha {
@@ -218,117 +336,104 @@
   border: 1px solid var(--borda);
   border-radius: var(--raio-sm);
   padding: 0.75rem 0.9rem;
+  background: var(--fundo-2);
 }
 
 .bloco-caracteres h3 {
-  margin-bottom: 0.5rem;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.06em;
 }
 
-.bloco-permitidos h3 { color: var(--cor-sucesso); }
-.bloco-proibidos h3  { color: var(--cor-erro); }
+.bloco-permitidos h3 { color: var(--sucesso); }
+.bloco-proibidos h3  { color: var(--erro); }
 
-.chips-caracteres {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
+.chips-caracteres { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
 .chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.9rem;
-  height: 1.9rem;
-  padding: 0 0.45rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 1.9rem; height: 1.9rem; padding: 0 0.45rem;
   font-family: "Courier New", Courier, monospace;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1rem; font-weight: 700;
   border: 1px solid var(--borda-forte);
   border-radius: var(--raio-sm);
-  background: var(--cor-superficie);
+  background: var(--fundo-1);
 }
 
-.chip--ok { color: var(--cor-sucesso); border-color: var(--cor-sucesso-bd); }
-
+.chip--ok { color: var(--sucesso); border-color: var(--sucesso-bd); }
 .chip--proibido {
-  color: var(--cor-erro);
-  border-color: var(--cor-erro-bd);
+  color: var(--erro); border-color: var(--erro-bd);
   text-decoration: line-through;
 }
 
 /* -------------------------------------------------------------------------
-   7. Alertas de formulário
+   7. Alertas
    ------------------------------------------------------------------------- */
 .alerta {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  margin-bottom: 1.25rem;
-  padding: 0.8rem 1rem;
-  border: 1px solid transparent;
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  margin-bottom: 1.25rem; padding: 0.85rem 1rem;
+  border: 1px solid transparent; border-left-width: 3px;
   border-radius: var(--raio-sm);
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 0.9rem; line-height: 1.5;
 }
 
 .alerta::before { font-weight: 700; }
 
 .alerta--sucesso {
-  background: var(--cor-sucesso-bg);
-  border-color: var(--cor-sucesso-bd);
-  color: #166534;
+  background: var(--sucesso-bg); border-color: var(--sucesso-bd);
+  border-left-color: var(--sucesso); color: var(--sucesso);
 }
 .alerta--sucesso::before { content: "✓"; }
 
 .alerta--erro {
-  background: var(--cor-erro-bg);
-  border-color: var(--cor-erro-bd);
-  color: #991b1b;
+  background: var(--erro-bg); border-color: var(--erro-bd);
+  border-left-color: var(--erro); color: var(--erro);
 }
 .alerta--erro::before { content: "✕"; }
 
 .alerta[hidden] { display: none; }
 
 /* -------------------------------------------------------------------------
-   8. Ações e rodapé do card
+   8. Ações e rodapé do formulário
    ------------------------------------------------------------------------- */
 .auth-acoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
   margin-top: 0.5rem;
 }
 
-.auth-acoes .btn { flex: 1; min-width: 140px; }
+.auth-acoes .btn { flex: 1; min-width: 130px; }
 
 .auth-rodape {
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
+  margin-top: 1.5rem; padding-top: 1.25rem;
   border-top: 1px solid var(--borda);
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--cor-texto-suave);
+  text-align: center; font-size: 0.9rem; color: var(--texto-suave);
 }
 
-.auth-rodape p { margin: 0.25rem 0; }
+.auth-rodape p { margin: 0.3rem 0; }
 .auth-rodape a { font-weight: 600; }
 
 /* -------------------------------------------------------------------------
-   9. Responsividade
+   9. Responsividade (empilha o split)
    ------------------------------------------------------------------------- */
-@media (max-width: 540px) {
-  .auth-card { padding: 1.5rem 1.25rem; }
-  .campo-linha { grid-template-columns: 1fr; }
-  .auth-acoes .btn { flex: 1 1 100%; }
+@media (max-width: 860px) {
+  .auth-split,
+  .auth-split--amplo {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .auth-visual {
+    border-right: none;
+    border-bottom: 1px solid var(--borda);
+    padding: 2rem clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* No mobile, a lista de destaques some para enxugar o topo */
+  .auth-visual__lista { display: none; }
+
+  .auth-form-area { padding: 2rem clamp(1.25rem, 5vw, 2rem); }
 }
-/* -------------------------------------------------------------------------
-   10. Logo SVG no header 
-   ------------------------------------------------------------------------- */
-.marca .logo-svg {
-  display: block;
-  height: 34px;
-  width: auto;
+
+@media (max-width: 480px) {
+  .campo-linha { grid-template-columns: 1fr; }
+  .opcoes-radio { grid-template-columns: 1fr; }
 }

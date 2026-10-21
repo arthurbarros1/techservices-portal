@@ -207,6 +207,19 @@
         campo.classList.remove("campo--erro");
       }
 
+            // Rola até o primeiro campo com erro e foca nele
+      function focarPrimeiroErro() {
+        var primeiro = document.querySelector(".campo--erro");
+        if (primeiro) {
+          primeiro.scrollIntoView({ behavior: "smooth", block: "center" });
+          var campoInput = primeiro.querySelector("input, select");
+          if (campoInput) {
+            // espera a rolagem começar antes de focar, para não "pular"
+            window.setTimeout(function () { campoInput.focus(); }, 300);
+          }
+        }
+      }
+
       inputSenha.addEventListener("input", function () {
         var resultado = AuthValidators.validarSenhaForte(inputSenha.value);
         atualizarCriterios(resultado.criterios);
@@ -257,6 +270,7 @@
         if (!valido) {
           textoErro.textContent = "Não foi possível trocar a senha. Corrija os campos destacados.";
           alertaErro.hidden = false;
+          focarPrimeiroErro();
           return;
         }
 

@@ -15,13 +15,7 @@
   <!-- ============================ HEADER ============================ -->
   <header class="cabecalho-topo main-header">
     <div class="cabecalho-conteudo">
-      <a href="index.html" class="marca" aria-label="TechServices — página inicial">
-        <svg class="logo-svg" width="170" height="34" viewBox="0 0 170 34" role="img" aria-label="Logo TechServices" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="4" width="26" height="26" rx="6" fill="#2563eb"/>
-          <text x="14" y="22" text-anchor="middle" font-family="system-ui, Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">TS</text>
-          <text x="35" y="23" font-family="system-ui, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">Tech<tspan fill="#9cc3ff">Services</tspan></text>
-        </svg>
-      </a>
+      <a href="index.html" class="marca" aria-label="TechServices — página inicial">Tech<span>Services</span></a>
       <nav class="menu-principal" aria-label="Navegação principal">
         <ul>
           <li><a href="index.html">Início</a></li>
@@ -32,82 +26,69 @@
     </div>
   </header>
 
-  <!-- ============================= MAIN ============================= -->
-  <main class="conteudo-central">
+  <!-- ============================ SPLIT ============================= -->
+  <div class="auth-split">
 
-    <section class="auth-card" aria-labelledby="titulo-login">
+    <!-- Painel visual (esquerda) -->
+    <aside class="auth-visual">
+      <span class="marca auth-visual__marca">Tech<span>Services</span></span>
+      <h2>Bem-vindo de <span>volta</span></h2>
+      <p>Acesse a área do cliente para acompanhar e solicitar seus serviços de Tecnologia da Informação.</p>
+      <ul class="auth-visual__lista">
+        <li>Acompanhe suas ordens de serviço</li>
+        <li>Solicite novos atendimentos</li>
+        <li>Suporte técnico especializado</li>
+      </ul>
+    </aside>
 
-      <header class="auth-cabecalho">
-        <h1 id="titulo-login">Login de clientes</h1>
-        <p>Acesse a área restrita com seu e-mail e senha cadastrados.</p>
-      </header>
+    <!-- Área do formulário (direita) -->
+    <main class="auth-form-area">
+      <div class="auth-form-inner">
 
-      <!-- Alertas no nível do formulário (exibidos via JS) -->
-      <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
-        Validação realizada com sucesso. Redirecionando…
-      </div>
-      <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
-        <span id="texto-alerta-erro">Verifique os dados informados.</span>
-      </div>
+        <header class="auth-cabecalho">
+          <h1 id="titulo-login">Login de clientes</h1>
+          <p>Entre com seu e-mail e senha cadastrados.</p>
+        </header>
 
-      <form id="form-login" class="auth-form" novalidate>
-
-        <div class="campo" id="campo-email">
-          <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
-          <input type="email" id="email" name="email" autocomplete="email"
-                 placeholder="voce@exemplo.com.br" required>
-          <span class="mensagem-campo" id="msg-email"></span>
+        <div id="alerta-sucesso" class="alerta alerta--sucesso" role="status" hidden>
+          Validação realizada com sucesso. Redirecionando…
+        </div>
+        <div id="alerta-erro" class="alerta alerta--erro" role="alert" hidden>
+          <span id="texto-alerta-erro">Verifique os dados informados.</span>
         </div>
 
-        <div class="campo" id="campo-senha">
-          <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
-          <input type="password" id="senha" name="senha" autocomplete="current-password"
-                 placeholder="Digite sua senha" required>
-          <span class="mensagem-campo" id="msg-senha"></span>
-        </div>
+        <form id="form-login" class="auth-form" novalidate>
 
-        <div class="auth-acoes">
-          <button type="submit" class="btn btn--primario">Realizar Login</button>
-          <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
-        </div>
+          <div class="campo" id="campo-email">
+            <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email"
+                   placeholder="voce@exemplo.com.br" required>
+            <span class="mensagem-campo" id="msg-email"></span>
+          </div>
 
-      </form>
+          <div class="campo" id="campo-senha">
+            <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="password" id="senha" name="senha" autocomplete="current-password"
+                   placeholder="Digite sua senha" required>
+            <span class="mensagem-campo" id="msg-senha"></span>
+          </div>
 
-      <nav class="auth-rodape">
-        <p><a href="troca-senha.html">Esqueci / trocar minha senha</a></p>
-        <p>Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
-      </nav>
+          <div class="auth-acoes">
+            <button type="submit" class="btn btn--primario">Realizar Login</button>
+            <button type="button" id="btn-limpar" class="btn btn--secundario">Limpar</button>
+          </div>
 
-    </section>
+        </form>
 
-  </main>
+        <nav class="auth-rodape">
+          <p><a href="troca-senha.html">Esqueci / trocar minha senha</a></p>
+          <p>Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+        </nav>
 
-  <!-- ============================ FOOTER ============================ -->
-  <footer class="rodape-institucional main-footer">
-    <div class="rodape-conteudo">
-      <div class="rodape-grade">
-        <section>
-          <h3>Contato</h3>
-          <ul class="lista-contatos">
-            <li>Telefone fixo: <a href="tel:+558133334444">(81) 3333-4444</a></li>
-            <li>WhatsApp: <a href="https://wa.me/5581999998888" target="_blank" rel="noopener">(81) 99999-8888</a></li>
-            <li>E-mail: <a href="mailto:contato@techservices.com.br">contato@techservices.com.br</a></li>
-          </ul>
-        </section>
-        <section>
-          <h3>Endereço</h3>
-          <address>
-            Av. Agamenon Magalhães, 1000 — Sala 1200<br>
-            Boa Vista, Recife/PE<br>
-            CEP 50070-160
-          </address>
-        </section>
       </div>
-    </div>
-    <p class="rodape-base">
-      &copy; 2026 TechServices — Soluções em Tecnologia da Informação.
-    </p>
-  </footer>
+    </main>
+
+  </div>
 
   <!-- Lógica reaproveitável de validação -->
   <script src="assets/js/auth-validators.js"></script>
@@ -149,6 +130,19 @@
         campo.classList.remove("campo--erro");
       }
 
+            // Rola até o primeiro campo com erro e foca nele
+      function focarPrimeiroErro() {
+        var primeiro = document.querySelector(".campo--erro");
+        if (primeiro) {
+          primeiro.scrollIntoView({ behavior: "smooth", block: "center" });
+          var campoInput = primeiro.querySelector("input, select");
+          if (campoInput) {
+            // espera a rolagem começar antes de focar, para não "pular"
+            window.setTimeout(function () { campoInput.focus(); }, 300);
+          }
+        }
+      }
+
       form.addEventListener("submit", function (evento) {
         evento.preventDefault();
         limparEstados();
@@ -177,10 +171,10 @@
         if (!valido) {
           textoErro.textContent = "Não foi possível entrar. Corrija os campos destacados.";
           alertaErro.hidden = false;
+          focarPrimeiroErro();
           return;
         }
 
-        // Sucesso: grava a marca de login e redireciona
         sessionStorage.setItem("ts_logado", "sim");
         alertaOk.hidden = false;
         window.setTimeout(function () {

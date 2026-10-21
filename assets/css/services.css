@@ -2,7 +2,7 @@
    1. Seções em painel
    ------------------------------------------------------------------------- */
 .painel-secao {
-  background: var(--cor-superficie);
+  background: var(--fundo-2);
   border: 1px solid var(--borda);
   border-radius: var(--raio);
   padding: 1.5rem;
@@ -12,7 +12,7 @@
 .painel-secao > h2 {
   margin-bottom: 1.25rem;
   font-size: 1.3rem;
-  color: var(--cor-primaria);
+  color: var(--texto);
 }
 
 /* -------------------------------------------------------------------------
@@ -25,7 +25,7 @@
 }
 
 .dado-item {
-  background: #f9fafb;
+  background: var(--fundo-1);
   border: 1px solid var(--borda);
   border-radius: var(--raio-sm);
   padding: 0.75rem 1rem;
@@ -36,14 +36,14 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--cor-texto-suave);
+  color: var(--texto-tenue);
   margin-bottom: 0.25rem;
 }
 
 .dado-item .valor {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--cor-texto);
+  color: var(--texto);
 }
 
 /* -------------------------------------------------------------------------
@@ -61,13 +61,13 @@
   caption-side: bottom;
   padding-top: 0.75rem;
   font-size: 0.82rem;
-  color: var(--cor-texto-suave);
+  color: var(--texto-tenue);
   text-align: left;
 }
 
 .tabela-pedidos thead {
-  background: var(--cor-primaria);
-  color: #ffffff;
+  background: var(--fundo-3);
+  color: var(--texto);
 }
 
 .tabela-pedidos th,
@@ -77,11 +77,14 @@
   border-bottom: 1px solid var(--borda);
   font-size: 0.9rem;
   vertical-align: middle;
+  color: var(--texto);
 }
 
 .tabela-pedidos th { font-weight: 600; white-space: nowrap; }
 
-.tabela-pedidos tbody tr:nth-child(even) { background: #f9fafb; }
+.tabela-pedidos tbody tr:nth-child(even) { background: var(--fundo-1); }
+
+.tabela-pedidos tbody tr:hover { background: var(--fundo-3); }
 
 .tabela-pedidos .col-preco {
   font-variant-numeric: tabular-nums;
@@ -90,7 +93,7 @@
 
 .tabela-vazia td {
   text-align: center;
-  color: var(--cor-texto-suave);
+  color: var(--texto-tenue);
   font-style: italic;
   padding: 1.5rem;
 }
@@ -100,29 +103,30 @@
    ------------------------------------------------------------------------- */
 .badge {
   display: inline-block;
-  padding: 0.2rem 0.6rem;
+  padding: 0.2rem 0.65rem;
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: var(--raio-sm);
   white-space: nowrap;
+  border: 1px solid transparent;
 }
 
 .badge--elaboracao {
-  background: #fef3c7;
-  color: #92400e;
-  border: 1px solid #fde68a;
+  background: rgba(251, 191, 36, 0.12);
+  color: var(--aviso);
+  border-color: rgba(251, 191, 36, 0.35);
 }
 
 .badge--andamento {
-  background: #dbeafe;
-  color: #1e40af;
-  border: 1px solid #bfdbfe;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--acento);
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .badge--concluido {
-  background: var(--cor-sucesso-bg);
-  color: #166534;
-  border: 1px solid var(--cor-sucesso-bd);
+  background: var(--sucesso-bg);
+  color: var(--sucesso);
+  border-color: var(--sucesso-bd);
 }
 
 /* -------------------------------------------------------------------------
@@ -133,18 +137,18 @@
   font-size: 0.82rem;
   font-weight: 500;
   font-family: inherit;
-  color: var(--cor-erro);
-  background: var(--cor-superficie);
-  border: 1px solid var(--cor-erro-bd);
+  color: var(--erro);
+  background: transparent;
+  border: 1px solid var(--erro-bd);
   border-radius: var(--raio-sm);
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background var(--transicao), color var(--transicao);
 }
 
 .btn-excluir:hover {
-  background: var(--cor-erro);
-  color: #ffffff;
-  border-color: var(--cor-erro);
+  background: var(--erro);
+  color: var(--fundo-0);
+  border-color: var(--erro);
 }
 
 /* -------------------------------------------------------------------------
@@ -166,7 +170,7 @@
 .form-solicitacao label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--cor-texto);
+  color: var(--texto);
 }
 
 .form-solicitacao select {
@@ -174,18 +178,23 @@
   padding: 0.65rem 0.8rem;
   font-size: 1rem;
   font-family: inherit;
-  color: var(--cor-texto);
-  background: var(--cor-superficie);
-  border: 1px solid var(--borda-forte);
+  color: var(--texto);
+  background: var(--fundo-2);
+  border: 1px solid var(--borda);
   border-radius: var(--raio-sm);
   cursor: pointer;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color var(--transicao), box-shadow var(--transicao);
 }
 
 .form-solicitacao select:focus {
   outline: none;
-  border-color: var(--cor-secundaria);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px var(--acento-glow);
+}
+
+.form-solicitacao select option {
+  background: var(--fundo-2);
+  color: var(--texto);
 }
 
 /* Painel de labels reativos */
@@ -194,7 +203,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 1rem;
-  background: #f9fafb;
+  background: var(--fundo-1);
   border: 1px solid var(--borda);
   border-radius: var(--raio);
   padding: 1.1rem 1.25rem;
@@ -205,14 +214,14 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--cor-texto-suave);
+  color: var(--texto-tenue);
   margin-bottom: 0.3rem;
 }
 
 .resumo-item .valor {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--cor-primaria);
+  color: var(--acento);
 }
 
 .form-acoes {
@@ -229,8 +238,8 @@
   font-weight: 600;
 }
 
-.mensagem-form.erro { color: var(--cor-erro); }
-.mensagem-form.ok   { color: var(--cor-sucesso); }
+.mensagem-form.erro { color: var(--erro); }
+.mensagem-form.ok   { color: var(--sucesso); }
 
 /* -------------------------------------------------------------------------
    7. Responsividade
@@ -238,3 +247,20 @@
 @media (max-width: 600px) {
   .form-acoes .btn { width: 100%; }
 }
+/* -------------------------------------------------------------------------
+   8. Efeitos (reveal e surgimento de linhas)
+   ------------------------------------------------------------------------- */
+.painel-secao { transition: border-color var(--transicao); }
+
+/* Linha recém-incluída surge suavemente */
+@keyframes linha-surge {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tabela-pedidos tbody tr {
+  animation: linha-surge 0.35s ease;
+}
+
+/* Botão incluir com leve micro-interação */
+.form-acoes .btn--primario { transition: all var(--transicao); }

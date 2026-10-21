@@ -1,40 +1,73 @@
 /* -------------------------------------------------------------------------
-   1. Variáveis de tema
+   1. Design tokens
    ------------------------------------------------------------------------- */
 :root {
-  /* Cores de marca */
-  --cor-primaria:       #1b3a5b;   /* azul-marinho sóbrio */
-  --cor-primaria-esc:   #152e49;
-  --cor-secundaria:     #2563eb;   /* azul de interação (links, foco) */
-  --cor-secundaria-esc: #1d4ed8;
+  /* --- Superfícies (do mais escuro ao mais claro) --- */
+  --fundo-0: #0a0e14;   /* fundo da página (quase-preto azulado) */
+  --fundo-1: #11161f;   /* seções */
+  --fundo-2: #1a212e;   /* cards e painéis */
+  --fundo-3: #232c3d;   /* cards em hover / elevação */
 
-  /* Neutros */
-  --cor-fundo:       #f4f6f9;
-  --cor-superficie:  #ffffff;
-  --cor-texto:       #1f2937;
-  --cor-texto-suave: #6b7280;
-  --borda:           #e5e7eb;
-  --borda-forte:     #d1d5db;
+  /* --- Bordas --- */
+  --borda:       #2a3444;
+  --borda-forte: #3a465a;
 
-  /* Estados */
-  --cor-sucesso:    #16803d;
-  --cor-sucesso-bg: #f0fdf4;
-  --cor-sucesso-bd: #bbf7d0;
-  --cor-erro:       #b91c1c;
-  --cor-erro-bg:    #fef2f2;
-  --cor-erro-bd:    #fecaca;
+  /* --- Texto --- */
+  --texto:       #e8edf4;   /* texto principal, alto contraste */
+  --texto-suave: #9aa7ba;   /* texto secundário */
+  --texto-tenue: #6b7789;   /* legendas, detalhes */
 
-  /* Tipografia */
+  /* --- Acento (ciano/azure vibrante) --- */
+  --acento:      #38bdf8;   /* interação, links, foco */
+  --acento-forte:#0ea5e9;
+  --acento-glow: rgba(56, 189, 248, 0.35);
+
+  /* --- Cor de marca secundária (índigo, para gradientes) --- */
+  --indigo:      #6366f1;
+
+  /* --- Estados --- */
+  --sucesso:    #34d399;
+  --sucesso-bg: rgba(52, 211, 153, 0.12);
+  --sucesso-bd: rgba(52, 211, 153, 0.35);
+  --erro:       #f87171;
+  --erro-bg:    rgba(248, 113, 113, 0.12);
+  --erro-bd:    rgba(248, 113, 113, 0.35);
+  --aviso:      #fbbf24;
+
+  /* --- Compatibilidade: aliases dos nomes antigos --- */
+  --cor-primaria:       var(--fundo-2);
+  --cor-primaria-esc:   var(--fundo-1);
+  --cor-secundaria:     var(--acento);
+  --cor-secundaria-esc: var(--acento-forte);
+  --cor-fundo:          var(--fundo-0);
+  --cor-superficie:     var(--fundo-2);
+  --cor-texto:          var(--texto);
+  --cor-texto-suave:    var(--texto-suave);
+  --borda-forte-compat: var(--borda-forte);
+  --cor-sucesso:        var(--sucesso);
+  --cor-sucesso-bg:     var(--sucesso-bg);
+  --cor-sucesso-bd:     var(--sucesso-bd);
+  --cor-erro:           var(--erro);
+  --cor-erro-bg:        var(--erro-bg);
+  --cor-erro-bd:        var(--erro-bd);
+
+  /* --- Tipografia --- */
   --fonte-base: system-ui, -apple-system, "Segoe UI", Roboto,
                 "Helvetica Neue", Arial, sans-serif;
 
-  /* Raios e sombras (leves) */
-  --raio-sm: 6px;
-  --raio:    8px;
-  --sombra-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --sombra:    0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  /* --- Raios --- */
+  --raio-sm: 8px;
+  --raio:    12px;
+  --raio-lg: 18px;
+  --raio-full: 999px;
 
-  --largura-conteudo: 1120px;
+  /* --- Sombras (sutis, com brilho de acento onde cabe) --- */
+  --sombra-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sombra:    0 4px 16px rgba(0, 0, 0, 0.35);
+  --sombra-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+
+  --transicao: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --largura-conteudo: 1160px;
 }
 
 /* -------------------------------------------------------------------------
@@ -47,16 +80,22 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: var(--fonte-base);
   font-size: 1rem;
-  line-height: 1.6;
-  color: var(--cor-texto);
-  background: var(--cor-fundo);
+  line-height: 1.65;
+  color: var(--texto);
+  background: var(--fundo-0);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 img,
@@ -68,50 +107,71 @@ iframe {
 ul { list-style: none; padding: 0; }
 
 a {
-  color: var(--cor-secundaria);
+  color: var(--acento);
   text-decoration: none;
+  transition: color var(--transicao);
 }
 
-a:hover { text-decoration: underline; }
+a:hover { color: var(--acento-forte); }
 
 /* -------------------------------------------------------------------------
    3. Tipografia
    ------------------------------------------------------------------------- */
 h1, h2, h3, h4 {
-  line-height: 1.25;
-  font-weight: 600;
-  color: var(--cor-primaria);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--texto);
+  letter-spacing: -0.02em;
 }
 
-h1 { font-size: 1.75rem; }
-h2 { font-size: 1.4rem; }
-h3 { font-size: 1.15rem; }
+h1 { font-size: clamp(1.9rem, 1.4rem + 2.2vw, 2.75rem); font-weight: 800; }
+h2 { font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.85rem); }
+h3 { font-size: 1.2rem; }
 
 :focus-visible {
-  outline: 2px solid var(--cor-secundaria);
-  outline-offset: 2px;
+  outline: 2px solid var(--acento);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-/* Título simples de seção  */
+/* Título de seção com detalhe de acento */
 .titulo-secao {
-  margin-bottom: 1.25rem;
-  font-size: 1.4rem;
-  color: var(--cor-primaria);
+  position: relative;
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.6rem;
+  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.85rem);
+  color: var(--texto);
+}
+
+.titulo-secao::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--acento), var(--indigo));
+  border-radius: var(--raio-full);
 }
 
 /* -------------------------------------------------------------------------
-   4. Header padrão
+   4. Header (sticky, com leve blur)
    ------------------------------------------------------------------------- */
 .cabecalho-topo {
-  background: var(--cor-primaria);
-  border-bottom: 1px solid var(--cor-primaria-esc);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(17, 22, 31, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borda);
 }
 
 .cabecalho-conteudo {
   max-width: var(--largura-conteudo);
   margin: 0 auto;
-  padding: 0 1.5rem;
-  min-height: 60px;
+  padding: 0 clamp(1rem, 5vw, 2rem);
+  min-height: 66px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -119,19 +179,19 @@ h3 { font-size: 1.15rem; }
   gap: 0.75rem 1.5rem;
 }
 
-/* Nome da empresa */
 .marca {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--texto);
+  letter-spacing: -0.01em;
 }
 
-.marca:hover { text-decoration: none; color: #ffffff; }
+.marca:hover { color: var(--texto); }
+.marca span { color: var(--acento); }
 
-.marca span { color: #9cc3ff; }   
-
-/* Menu de navegação */
+/* Menu */
 .menu-principal ul {
   display: flex;
   flex-wrap: wrap;
@@ -140,122 +200,140 @@ h3 { font-size: 1.15rem; }
 
 .menu-principal a {
   display: inline-block;
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 0.9rem;
   font-size: 0.95rem;
-  color: #d7e3f4;
+  font-weight: 500;
+  color: var(--texto-suave);
   border-radius: var(--raio-sm);
+  transition: color var(--transicao), background var(--transicao);
 }
 
 .menu-principal a:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
-  text-decoration: none;
+  color: var(--texto);
+  background: var(--fundo-2);
 }
 
 /* -------------------------------------------------------------------------
-   5. Botões 
+   5. Botões
    ------------------------------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.65rem 1.25rem;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   font-family: inherit;
   line-height: 1.2;
-  color: var(--cor-texto);
-  background: var(--cor-superficie);
-  border: 1px solid var(--borda-forte);
+  border: 1.5px solid transparent;
   border-radius: var(--raio-sm);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: all var(--transicao);
 }
 
-.btn:hover { background: #f9fafb; }
+.btn:active { transform: translateY(1px); }
 
 .btn--primario {
-  color: #ffffff;
-  background: var(--cor-secundaria);
-  border-color: var(--cor-secundaria);
+  color: #06121c;
+  background: linear-gradient(135deg, var(--acento) 0%, var(--acento-forte) 100%);
+  box-shadow: 0 4px 16px var(--acento-glow);
 }
 
 .btn--primario:hover {
-  background: var(--cor-secundaria-esc);
-  border-color: var(--cor-secundaria-esc);
+  box-shadow: 0 6px 24px var(--acento-glow);
+  transform: translateY(-2px);
 }
 
 .btn--secundario {
-  color: var(--cor-primaria);
-  background: var(--cor-superficie);
+  color: var(--texto);
+  background: var(--fundo-2);
   border-color: var(--borda-forte);
 }
 
 .btn--secundario:hover {
-  background: #f9fafb;
-  border-color: var(--cor-texto-suave);
+  border-color: var(--acento);
+  background: var(--fundo-3);
 }
 
 /* -------------------------------------------------------------------------
-   6. Conteúdo principal
+   6. Conteúdo
    ------------------------------------------------------------------------- */
 .conteudo-central {
   flex: 1;
   width: 100%;
   max-width: var(--largura-conteudo);
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem clamp(1rem, 5vw, 2rem);
 }
 
 /* -------------------------------------------------------------------------
-   7. Rodapé padrão 
+   7. Rodapé
    ------------------------------------------------------------------------- */
 .rodape-institucional {
-  background: var(--cor-primaria);
-  color: #d7e3f4;
+  background: var(--fundo-1);
+  color: var(--texto-suave);
   margin-top: auto;
+  border-top: 1px solid var(--borda);
 }
 
 .rodape-conteudo {
   max-width: var(--largura-conteudo);
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 1.5rem;
+  padding: 3rem clamp(1rem, 5vw, 2rem) 1.5rem;
 }
 
 .rodape-grade {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .rodape-institucional h3 {
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
   font-size: 1.05rem;
-  color: #ffffff;
+  color: var(--texto);
 }
 
-.rodape-institucional a { color: #d7e3f4; }
-.rodape-institucional a:hover { color: #ffffff; }
+.rodape-institucional a { color: var(--texto-suave); }
+.rodape-institucional a:hover { color: var(--acento); }
 
-.rodape-institucional address {
-  font-style: normal;
-  line-height: 1.8;
-}
+.rodape-institucional address { font-style: normal; line-height: 1.9; }
 
-.lista-contatos li { line-height: 2; }
+.lista-contatos li { line-height: 2.1; }
 
 .rodape-base {
   max-width: var(--largura-conteudo);
-  margin: 1.5rem auto 0;
-  padding: 1.25rem 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 2rem auto 0;
+  padding: 1.5rem clamp(1rem, 5vw, 2rem);
+  border-top: 1px solid var(--borda);
   text-align: center;
   font-size: 0.875rem;
-  color: #a9bdd6;
+  color: var(--texto-tenue);
 }
 
 /* -------------------------------------------------------------------------
-   8. Utilitários
+   8. Scroll reveal (surgir ao rolar) — acionado por JS
+   ------------------------------------------------------------------------- */
+.revelar {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.revelar.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Se o usuário prefere menos movimento, não anima */
+@media (prefers-reduced-motion: reduce) {
+  .revelar { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* -------------------------------------------------------------------------
+   9. Utilitários
    ------------------------------------------------------------------------- */
 .sr-only {
   position: absolute;

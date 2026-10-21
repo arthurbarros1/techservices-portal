@@ -146,5 +146,29 @@
 
   <script src="assets/js/services.js"></script>
 
+  <!-- Scroll reveal -->
+  <script>
+    (function () {
+      "use strict";
+      var alvos = document.querySelectorAll(".revelar");
+      if (!("IntersectionObserver" in window) || alvos.length === 0) {
+        alvos.forEach(function (el) { el.classList.add("visivel"); });
+        return;
+      }
+      var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("visivel");
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      alvos.forEach(function (el) { obs.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
+
 </body>
 </html>
