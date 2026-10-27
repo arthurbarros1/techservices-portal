@@ -91,8 +91,6 @@ O portal é composto por **5 páginas interligadas**, mantendo coerência visual
 
 ---
 
-## 📂 Estrutura de Diretórios
-
 ## 📁 Estrutura do Projeto
 
 ```bash
