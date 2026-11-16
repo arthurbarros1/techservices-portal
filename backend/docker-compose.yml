@@ -1,0 +1,17 @@
+# Sobe um PostgreSQL local compatível com application.properties:
+#   docker compose up -d
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: techservices-db
+    environment:
+      POSTGRES_DB: techservices
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - techservices-data:/var/lib/postgresql/data
+
+volumes:
+  techservices-data:

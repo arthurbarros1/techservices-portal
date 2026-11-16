@@ -1,0 +1,70 @@
+/* ==========================================================================
+   app.css — complementos da AV2 sobre os estilos herdados da AV1
+   ========================================================================== */
+
+/* Campos novos (número e textarea) com o mesmo visual dos inputs da AV1 */
+.campo input[type="number"],
+.campo textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--texto);
+  background: var(--fundo-2);
+  border: 1.5px solid var(--borda);
+  border-radius: var(--raio-sm);
+  transition: border-color var(--transicao), box-shadow var(--transicao),
+              background var(--transicao);
+}
+
+.campo textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+.campo textarea::placeholder { color: var(--texto-tenue); }
+.campo textarea:hover { border-color: var(--borda-forte); }
+
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--acento);
+  background: var(--fundo-3);
+  box-shadow: 0 0 0 3px var(--acento-glow);
+}
+
+.campo--erro textarea { border-color: var(--erro); }
+.campo--ok   textarea { border-color: var(--sucesso); }
+
+.contador-caracteres { align-self: flex-end; font-size: 0.75rem; color: var(--texto-tenue); }
+
+/* Links do menu exibidos como botão (Sair) */
+.menu-principal .link-botao {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Barra de ações do carrinho (salvar lista) */
+.barra-carrinho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.barra-carrinho .total { font-weight: 700; color: var(--texto); }
+.barra-carrinho .total span { color: var(--acento); }
+
+.aviso-pendente {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--aviso);
+}
+
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.carregando {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--texto-tenue);
+  font-style: italic;
+}

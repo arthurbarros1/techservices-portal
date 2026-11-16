@@ -35,3 +35,6 @@ npm-debug.log*
 # --- Variáveis de ambiente ---
 .env
 .env.local
+# --- AV2: artefatos de build ---
+backend/target/
+frontend/dist/

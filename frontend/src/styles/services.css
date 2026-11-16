@@ -1,0 +1,266 @@
+/* -------------------------------------------------------------------------
+   1. Seções em painel
+   ------------------------------------------------------------------------- */
+.painel-secao {
+  background: var(--fundo-2);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.painel-secao > h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.3rem;
+  color: var(--texto);
+}
+
+/* -------------------------------------------------------------------------
+   2. Seção 1 — dados do usuário logado
+   ------------------------------------------------------------------------- */
+.dados-usuario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.dado-item {
+  background: var(--fundo-1);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-sm);
+  padding: 0.75rem 1rem;
+}
+
+.dado-item .rotulo {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texto-tenue);
+  margin-bottom: 0.25rem;
+}
+
+.dado-item .valor {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+/* -------------------------------------------------------------------------
+   3. Seção 2 — tabela de pedidos
+   ------------------------------------------------------------------------- */
+.tabela-rolagem { overflow-x: auto; }
+
+.tabela-pedidos {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 780px;
+}
+
+.tabela-pedidos caption {
+  caption-side: bottom;
+  padding-top: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--texto-tenue);
+  text-align: left;
+}
+
+.tabela-pedidos thead {
+  background: var(--fundo-3);
+  color: var(--texto);
+}
+
+.tabela-pedidos th,
+.tabela-pedidos td {
+  padding: 0.8rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--borda);
+  font-size: 0.9rem;
+  vertical-align: middle;
+  color: var(--texto);
+}
+
+.tabela-pedidos th { font-weight: 600; white-space: nowrap; }
+
+.tabela-pedidos tbody tr:nth-child(even) { background: var(--fundo-1); }
+
+.tabela-pedidos tbody tr:hover { background: var(--fundo-3); }
+
+.tabela-pedidos .col-preco {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tabela-vazia td {
+  text-align: center;
+  color: var(--texto-tenue);
+  font-style: italic;
+  padding: 1.5rem;
+}
+
+/* -------------------------------------------------------------------------
+   4. Badges de status
+   ------------------------------------------------------------------------- */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--raio-sm);
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.badge--elaboracao {
+  background: rgba(251, 191, 36, 0.12);
+  color: var(--aviso);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.badge--andamento {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--acento);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.badge--concluido {
+  background: var(--sucesso-bg);
+  color: var(--sucesso);
+  border-color: var(--sucesso-bd);
+}
+
+/* -------------------------------------------------------------------------
+   5. Botão de exclusão na linha
+   ------------------------------------------------------------------------- */
+.btn-excluir {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--erro);
+  background: transparent;
+  border: 1px solid var(--erro-bd);
+  border-radius: var(--raio-sm);
+  cursor: pointer;
+  transition: background var(--transicao), color var(--transicao);
+}
+
+.btn-excluir:hover {
+  background: var(--erro);
+  color: var(--fundo-0);
+  border-color: var(--erro);
+}
+
+/* -------------------------------------------------------------------------
+   6. Seção 3 — formulário de nova solicitação
+   ------------------------------------------------------------------------- */
+.form-solicitacao {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.form-solicitacao .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-solicitacao label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.form-solicitacao select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--texto);
+  background: var(--fundo-2);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-sm);
+  cursor: pointer;
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.form-solicitacao select:focus {
+  outline: none;
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px var(--acento-glow);
+}
+
+.form-solicitacao select option {
+  background: var(--fundo-2);
+  color: var(--texto);
+}
+
+/* Painel de labels reativos */
+.resumo-solicitacao {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+  background: var(--fundo-1);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.1rem 1.25rem;
+}
+
+.resumo-item .rotulo {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texto-tenue);
+  margin-bottom: 0.3rem;
+}
+
+.resumo-item .valor {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--acento);
+}
+
+.form-acoes {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.mensagem-form {
+  grid-column: 1 / -1;
+  min-height: 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.mensagem-form.erro { color: var(--erro); }
+.mensagem-form.ok   { color: var(--sucesso); }
+
+/* -------------------------------------------------------------------------
+   7. Responsividade
+   ------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .form-acoes .btn { width: 100%; }
+}
+/* -------------------------------------------------------------------------
+   8. Efeitos (reveal e surgimento de linhas)
+   ------------------------------------------------------------------------- */
+.painel-secao { transition: border-color var(--transicao); }
+
+/* Linha recém-incluída surge suavemente */
+@keyframes linha-surge {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tabela-pedidos tbody tr {
+  animation: linha-surge 0.35s ease;
+}
+
+/* Botão incluir com leve micro-interação */
+.form-acoes .btn--primario { transition: all var(--transicao); }
