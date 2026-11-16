@@ -1,11 +1,13 @@
 # 💻 TechServices Portal
 
-> Solução web institucional e transacional desenvolvida em HTML5 semântico, CSS3 e JavaScript Vanilla para a gestão e contratação de serviços corporativos de Tecnologia da Informação.
+> Aplicação **Full-Stack** corporativa (Java Spring Boot + React + PostgreSQL) para a gestão e contratação de serviços de Tecnologia da Informação — evolução da versão estática original em HTML5, CSS3 e JavaScript Vanilla (AV1).
 
-[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?style=for-the-badge&logo=github)](https://arthurbarros1.github.io/techservices-portal/)
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?style=for-the-badge&logo=github)](https://arthurbarros1.github.io/techservices-portal/av1/)
 [![HTML5](https://img.shields.io/badge/HTML5-Semântico-E34F26?style=for-the-badge&logo=html5&logoColor=white)](#)
 [![CSS3](https://img.shields.io/badge/CSS3-Moderno-1572B6?style=for-the-badge&logo=css3&logoColor=white)](#)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](#)
+[![Java](https://img.shields.io/badge/Java-17%2B-007396?style=for-the-badge&logo=java&logoColor=white)](#)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](#)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](#)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-JPA-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](#)
@@ -15,17 +17,19 @@
 
 ## 📌 Visão Geral do Projeto
 
-O **TechServices Portal** é uma plataforma web completa construída com tecnologias web nativas (sem dependências de frameworks externos). O sistema simula o ecossistema digital de uma empresa de serviços de TI, abrangendo desde a presença institucional e comunicação com clientes até fluxos completos de autenticação, validações avançadas de dados cadastrais no front-end e um painel reativo para gerenciamento e contratação de ordens de serviço.
+O **TechServices Portal** é uma aplicação **Full-Stack** corporativa composta por uma API REST em **Java Spring Boot** (Spring Data JPA), persistência em **PostgreSQL** e uma interface SPA em **React** (Vite + Hooks). O sistema simula o ecossistema digital de uma empresa de serviços de TI, abrangendo desde a presença institucional e comunicação com clientes até fluxos completos de autenticação, cadastro de clientes e de serviços, validações avançadas de dados cadastrais e um carrinho de solicitações persistido no banco de dados.
 
-Este projeto foi concebido para atender rigorosamente aos requisitos técnicos da avaliação acadêmica (AV1) e, concomitantemente, compor meu portfólio profissional demonstrando domínio dos fundamentos da web: **estruturação semântica, cascata e especificidade de estilos, manipulação de DOM e validações algorítmicas**.
+O projeto nasceu na avaliação acadêmica **AV1** como um site estático construído com tecnologias web nativas (HTML5, CSS3 e JavaScript Vanilla), demonstrando os fundamentos da web: **estruturação semântica, cascata e especificidade de estilos, manipulação de DOM e validações algorítmicas**. Essa versão original foi preservada integralmente como marco histórico na pasta [`/av1`](av1/). Na **AV2**, o portal evoluiu para a arquitetura Full-Stack atual, organizada nas pastas [`/backend`](backend/) e [`/frontend`](frontend/), mantendo o layout e a identidade visual da AV1.
 
 ---
 
 ## 🚀 Demonstração Online
 
-Acesse o sistema em execução diretamente pelo navegador:
+Acesse a **versão estática original (AV1)** diretamente pelo navegador:
 
-👉 **[https://arthurbarros1.github.io/techservices-portal/](https://arthurbarros1.github.io/techservices-portal/)**
+👉 **[https://arthurbarros1.github.io/techservices-portal/av1/](https://arthurbarros1.github.io/techservices-portal/av1/)**
+
+> ⚠️ **Atenção:** o GitHub Pages hospeda apenas arquivos estáticos, por isso o link acima exibe somente a versão da AV1 (HTML, CSS e JavaScript puro). A aplicação Full-Stack da AV2 (Spring Boot + React + PostgreSQL) depende de um servidor Java e de um banco de dados e deve ser executada localmente, com o PostgreSQL em container via Docker Compose. Consulte a seção [Como Rodar o Projeto Localmente](#-como-rodar-o-projeto-localmente).
 
 ---
 
