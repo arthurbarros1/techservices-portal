@@ -149,6 +149,7 @@ techservices-portal/
 │   ├── docker-compose.yml        # PostgreSQL local opcional
 │   ├── mvnw / mvnw.cmd           # Maven Wrapper (não exige Maven instalado)
 │   └── pom.xml
+├── backend-node/                 # API espelho em Node.js + Express (mesmas rotas e banco; porta 3000)
 ├── frontend/                     # SPA — React 18 + Vite + React Router
 │   ├── public/img/               # Imagens da AV1
 │   └── src/
